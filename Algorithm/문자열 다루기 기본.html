@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>코딩테스트 알고리즘 연습 문제</title>
+</head>
+<body>
+    <h1>문자열 다루기 기본</h1>
+    <em>문제 설명 </em>
+    <p>
+        문자열 s의 길이가 4 혹은 6이고, 숫자로만 구성돼있는지 확인해주는 함수, solution을 완성하세요. 예를 들어 s가 "a234"이면 False를 리턴하고 "1234"라면 True를 리턴하면 됩니다.
+    </p>
+    <ul> 
+        제한 조건
+        <li> s는 길이 1 이상, 길이 8 이하인 문자열입니다.</li>
+    </ul>
+<script>
+    // 처음으로 풀었던 방식
+    let s = 'a123';
+
+    function solution(s) {
+        const pattern_eng = /[a-zA-Z]/; // 정규식을 이용
+    
+        if(pattern_eng.test(s)) return false //test란 ()괄호 사이에 있는 문자에 찾는 문자열이 들어가 있는지 아닌지를 확인해준다.
+        if(s.length === 4 || s.length === 6) return true;
+    };
+
+    // 첫번째 방식을 조금 정리한 코드
+
+    function solution(s) {
+        const pattern_eng = /[a-zA-Z]/; 
+
+        if(!pattern_eng.test(s) && s.length === 4 || s.length === 6) return true
+        else return false;
+    };
+
+        solution(s);
+    
+    
+
+    // 다른사람의 풀이
+    function alpha_string46(s){
+        var regex = /^\d{6}$|^\d{4}$/;
+        return regex.test(s);
+    }
+
+    console.log( alpha_string46("a234") );
+
+    // 정규식을 이용하여 ^ 는 첫번째, $ 는 입력의 끝 문자에 매칭된다. d 는 숫자 1 에 매칭된다. {6}은 숫자 갯수를 말하며 | 를 사용함으로써 ^\d{6}$ 또는 ^\d{4}$ 에 일치한다는 뜻.
+
+    // 여러가지 방법을 찾던 과정
+    function solution(s){
+        if(isNaN(s) === false && !s.includes('e') && (s.length == 4 || s.length == 6)) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+    // 위와 같은경우 테스트11에서 자꾸만 실패가 떳는데, 그 이유는 지수형식이 들어가서 였다. ("1e22") 같은 형식을 isNaN 으로 확인했을때, 
+    // 숫자로 판단하여 실패가 되는 것 이었는데, 이때 includes 를 이용하여 'e'가 포함되지 않을때만 해당되게 코드를 수정했더니, 테스트를 성공할 수 있었다.
+    // 지수형식이란 ? 영문자 E는 숫자 10을 나타내는 기호로 E 뒤에 표시되는 11을 지수라고 합니다. 숫자가 너무 크면 한눈에 해당 숫자를 이해하기 어렵기 때문에 숫자를 압축해서 지수 형식으로 표시하고 있습니다
+    
+</script>
+</body>
+</html>
