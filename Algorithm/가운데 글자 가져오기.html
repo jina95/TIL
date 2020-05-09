@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>코딩테스트 알고리즘 연습 문제</title>
+</head>
+<body>
+    <h1>가운데 글자 가져오기</h1>
+    <em>문제 설명 </em>
+    <p>
+        단어 s의 가운데 글자를 반환하는 함수, solution을 만들어 보세요. 단어의 길이가 짝수라면 가운데 두글자를 반환하면 됩니다.
+    </p>
+    <ul> 
+        제한 조건
+        <li> s는 길이가 1 이상, 100이하인 스트링입니다.</li>
+    </ul>
+<script>
+    // 처음으로 풀었던 방식
+    let s = prompt();
+    // let s = "abcdefg"
+    console.log(solution(s));
+    
+    function solution(s) {
+        let a = s.length / 2 
+        if (!Number.isInteger(a)){ // Number.isInteger >> 소수점이 있는지 확인 해 줌.
+            Math.floor(a); // 소수점 이하를 버리고
+            return s.slice(a, a+1); // slice() 메소드는 문자열의 일부를 추출하면서 새로운 문자열을 반환
+        } else {
+            return s.slice(a-1, a+1);
+        }  
+    };
+
+    // 다른사람의 풀이
+    function solution(s) {
+        return s.substr(Math.ceil(s.length / 2) - 1, s.length % 2 === 0 ? 2 : 1);
+    }   
+
+    // .substr()은 문자열에서 특정 부분만 골라낼 때 사용하는 메서드, ex string.substr( start, length )
+    // Math.floor() > 소수점 이하를 버림한다, Math.ceil() > 소수점 이하를 올림한다, Math.round() > 소수점 이하를 반올림한다.
+    // %2 로 홀수인지 짝수인지 나머지를 연산한다.
+
+</script>
+</body>
+</html>
