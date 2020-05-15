@@ -1,6 +1,6 @@
 # Vue 시작하기
 ### Vue 강의 들으면서 내용 정리하기 !
-- 추후 실습 내용은 repositories 로 남길 예정
+- [실습내용](https://github.com/jina95/vueStudy_learnVueJs)
 <hr/>
 object.defineproperty(대상객체, 객체의 속성, {
 

@@ -1,7 +1,7 @@
 # Vue
 ## 20200512
 ### Vue 강의 들으면서 내용 정리하기 ! 3
-- 추후 실습 내용은 repositories 로 남길 예정
+- [실습내용](https://github.com/jina95/vueStudy_learnVueJs)
 
 **watch**
 - 데이터를 대상으로 넣을 수 있다. 데이터의 변화에 따라서 특정 로직을 실행할 수 있는 뷰의 속성 

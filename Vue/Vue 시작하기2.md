@@ -1,7 +1,7 @@
 # Vue
 ## 20200511
 ### Vue 강의 들으면서 내용 정리하기 ! 2
-- 추후 실습 내용은 repositories 로 남길 예정
+- [실습내용](https://github.com/jina95/vueStudy_learnVueJs)
 
 상위컴포넌트 하위컴포넌트가 아닌 같은컴포넌트 레벨간의 통신 방법
 - 하위컴포넌트에서 상위로 올려준뒤(event), 다른 하위컴포넌트로 내려야한다.(props)
