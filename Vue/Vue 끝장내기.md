@@ -36,4 +36,8 @@
 
 **[스타일 속성 읽어보기](https://kr.vuejs.org/v2/style-guide/index.html)/ 필수&매우추천함**
 
+**VueRouter**
+- Vue.use : 플러그인을 실행하기 위해서 초기화 하기 위한 코드
+
+
 
