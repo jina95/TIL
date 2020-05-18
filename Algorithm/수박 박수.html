@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>코딩테스트 알고리즘 연습 문제</title>
+</head>
+
+<body>
+    <h1>수박 박수</h1>
+    <em>문제 설명 </em>
+    <p>
+        길이가 n이고, 수박수박수박수....와 같은 패턴을 유지하는 문자열을 리턴하는 함수, solution을 완성하세요. 예를들어 n이 4이면 "수박수박"을 리턴하고 3이라면 "수박수"를 리턴하면 됩니다.
+    </p>
+    <ul>
+        제한 조건
+        <li> n은 길이 10,000이하인 자연수입니다.</li>
+    </ul>
+    <script>
+        // 처음으로 풀었던 방식
+        // let s = prompt();
+        let n = "5"
+        solution(n);
+
+        function solution(n) {
+            if (n % 2 === 0) return '수박'.repeat(n / 2)
+            else return '수박'.repeat(n / 2) + "수";
+        };
+        // 나머지가 0 일때는 n을 2로 나눈만큼만 반복하고
+        // 그 이외에는 n 을 2로 나눈만큼 반복한 후에 + 수 를 해준다.
+
+        // 다른사람의 풀이
+        function waterMelon(n) {
+            // n을 2로나눈 몫 만큼 곱하고 나머지가 있으면 '수' 더해라.
+            return ("수박").repeat(n / 2) + ((n % 2) ? '수' : '');
+        }
+
+        // 다른사람의 풀이
+        const waterMelon = n => "수박".repeat(n).slice(0, n);
+
+        // .slice()는 배열의 일부분을 선택하여 새로운 배열을 만듭니다.
+        // array.slice( start, end )
+        // repeat 으로 반복한 뒤에 0 번째부터 n개까지 새롭게 만든다.
+   
+
+    </script>
+</body>
+
+</html>
