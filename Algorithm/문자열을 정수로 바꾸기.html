@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>코딩테스트 알고리즘 연습 문제</title>
+</head>
+
+<body>
+    <h1>문자열을 정수로 바꾸기</h1>
+    <em>문제 설명 </em>
+    <p>
+        문자열 s를 숫자로 변환한 결과를 반환하는 함수, solution을 완성하세요.
+
+    </p>
+    <ul>
+        제한 조건
+        <li>s의 길이는 1 이상 5이하입니다.</li>
+        <li>s의 맨앞에는 부호(+, -)가 올 수 있습니다.</li>
+        <li>s는 부호와 숫자로만 이루어져있습니다.</li>
+        <li>s는 0으로 시작하지 않습니다.</li>
+    </ul>
+    <script>
+        // 처음으로 풀었던 방식
+        // let s = prompt();
+        let s = "1234"
+        solution(s);
+    
+        function solution(s) {
+            return Number(s);
+        }
+
+        // 다른사람의 풀이
+        function strToInt(str) {
+            return str / 1
+        }
+
+        // 다른사람의 풀이
+        function strToInt(str) {
+            return +str;
+        }
+        //문자열과 숫자열의 사칙연산은 숫자가 나옴
+
+
+    </script>
+</body>
+
+</html>
