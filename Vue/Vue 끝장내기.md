@@ -78,3 +78,36 @@
 - [Vue CLI env 파일 규칙 문서](https://cli.vuejs.org/guide/mode-and-env.html#modes-and-environment-variables)
 
 **"VUE_APP_"접두사가 붙은 변수는 자동로드 / 사용시에는 process.파일명.이름(ex process.env.VUE_APP_API_URL)**
+
+**async await error처리**
+- try catch
+- try {
+    //비지니스 로직
+    } catch (error) {
+        // 에러핸들링 코드 
+        console.log(error.response.data);
+    }
+- 이때 error 을 화면에 뿌려주는 것이 error 을 잡는데 가장 효과적이다.
+
+**[뷰 라우터 Programmatic Navigation 문서](https://router.vuejs.org/guide/essentials/navigation.html#programmatic-navigation)**
+- this.$router.push() == <router-link to="">
+- 원하는 위치로 이동할 수 있다.
+
+**vuex store**
+- state : 여러컴포넌트간의 공유 되는 데이터
+- mutations : state 를 바꾸는것
+- 필요한 곳에서 this.$store.commit('mutaions이름', ) 으로 호출해준다.
+- getters : state의 값이 변경됬을때 특정상태를 계산 (기본적으로 return 값을 가진다.)
+
+**dependencies**
+- 애플리케이션 로직과 관련된 라이브러리 목록
+- npm run build 시 최종적으로 자원이 변환, 압축이 되서 js.css 가 나오게 된다. (라이브러리들이 포함되서)
+
+**devDependencies**
+- npm run build 결과물에 포함되지 않는다.(배포할때 devDependencies 의 라이브러리들은 포함되지 않음!)
+
+**토큰이란 사용자가 인증되었을때만 발급 / 로그인이후 api 의 인증 값**
+- 토큰은 header 안에 {Authorization: } 속성에 실어준다. (실습예제에서는 axios.create baseurl 밑)
+
+**[axios.interceptor](https://github.com/axios/axios#interceptors)**
+- 서버로 요청을 보내는 것과 서버에서 받은 응답을 화면단에서 처리하기 전에 추가로직을 넣을 수 있는것.
