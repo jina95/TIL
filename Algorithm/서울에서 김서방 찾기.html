@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>코딩테스트 알고리즘 연습 문제</title>
+</head>
+
+<body>
+    <h1>서울에서 김서방 찾기</h1>
+    <em>문제 설명 </em>
+    <p>
+        String형 배열 seoul의 element중 Kim의 위치 x를 찾아, 김서방은 x에 있다는 String을 반환하는 함수, solution을 완성하세요. seoul에 Kim은 오직 한 번만 나타나며 잘못된 값이
+        입력되는 경우는 없습니다.
+    </p>
+    <ul>
+        제한 조건
+        <li>seoul은 길이 1 이상, 1000 이하인 배열입니다.</li>
+        <li>seoul의 원소는 길이 1 이상, 20 이하인 문자열입니다.</li>
+        <li>Kim은 반드시 seoul 안에 포함되어 있습니다.</li>
+    </ul>
+    <script>
+        // 처음으로 풀었던 방식
+        let seoul = ["jane", "kim"]
+        
+        solution(seoul);
+
+        function solution(seoul) {
+            return `김서방은 ${seoul.indexOf("Kim")}에 있다`
+        }
+        // indexOf 로 kim의 위치를 찾는다
+
+        // 다른사람의 풀이
+        function findKim(seoul){
+            var idx = 0;
+            for (var i = 0; i < seoul.length; i++) {
+                if (seoul[i] === 'Kim') {
+                    idx += i;
+                    break;
+                }
+            }
+
+            return "김서방은 " + idx + "에 있다";
+        }
+        // break 는 현재 루프 즉, switch나 for, while문 등을 종료하고 루프에서 빠져나온다
+        // return 과 break 차이는 ? 만약에 함수 안에 작성된 루프 안에서 break가 쓰였다면, break를 감싸고 있는 루프를 빠져나가고 함수 밖으로는 나가지 않는다. return은 함수 실행을 종료하고 함수를 호출한 곳으로 실행 흐름을 옮긴다.
+    </script>
+</body>
+
+</html>
