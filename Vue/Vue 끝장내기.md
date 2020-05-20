@@ -75,6 +75,6 @@
 - .env.development > 개발할때, 로컬서버
 - .env.production > 배포할때, 도메인주소
 - .env > development 나 production 이 없을때 공통으로 들어가야하는 부분들에 대해 넣음.(두개가 없을때 가장 높은 우선순위 )
--[Vue CLI env 파일 규칙 문서](https://cli.vuejs.org/guide/mode-and-env.html#modes-and-environment-variables)
+- [Vue CLI env 파일 규칙 문서](https://cli.vuejs.org/guide/mode-and-env.html#modes-and-environment-variables)
 
 **"VUE_APP_"접두사가 붙은 변수는 자동로드 / 사용시에는 process.파일명.이름(ex process.env.VUE_APP_API_URL)**
