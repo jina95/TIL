@@ -65,6 +65,28 @@
         // % 26 하는 이유가 뭘까 ? 
         // 시저 암호 너무 어렵다 이해가 안된다. 흐어!!!!!!!!
 
+        function solution(s, n) {
+            let arr = [...s] // 받은 문자열을 배열로 반환
+            let answer = ''
+
+            for (let i = 0; i < arr.length; i++) {
+                // 1. 공백일 경우 그냥 남겨두고,
+                // 2. z일 경우 아스키코드 값을  -25(+1) 해줘야함 
+
+                //answer[i] = arr[i].search(/\s/) ? '공백' : '노공백'
+
+                //만약 알파벳 아스키코드값이 'z'의 아스키코드값(122)이상이면 -26를 해줘라
+                let sum = arr[i].charCodeAt() + n
+                answer += arr[i] == ' ' ? ' ' : String.fromCharCode(arr[i].toLowerCase().charCodeAt() + n > 'z'.charCodeAt() ? sum - 26 : sum)
+
+
+                // 안된이유 - 'z'만 조건을 줬음.. x, y 같은 경우의 변수도 생각해서 조건을 줘야함
+                // answer += arr[i] == ' ' ? ' ' : String.fromCharCode(arr[i].toLowerCase() !=='z' ? arr[i].charCodeAt() + n:(arr[i].charCodeAt() - 26)+n)
+            }
+
+            return answer
+        }
+
     </script>
 </body>
 
