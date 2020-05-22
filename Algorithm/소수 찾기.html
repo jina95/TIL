@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>코딩테스트 알고리즘 연습 문제</title>
+</head>
+
+<body>
+    <h1>소수 찾기</h1>
+    <em>문제 설명 </em>
+    <p>
+        1부터 입력받은 숫자 n 사이에 있는 소수의 개수를 반환하는 함수, solution을 만들어 보세요.<br/>
+        소수는 1과 자기 자신으로만 나누어지는 수를 의미합니다.
+        (1은 소수가 아닙니다.)
+    </p>
+    <ul>
+        제한 조건
+        <li> n은 2이상 1000000이하의 자연수입니다. </li>
+    </ul>
+    <script>
+        // 처음으로 풀었던 방식
+        // let s = prompt();
+        let n = 5
+        solution(n);
+
+        // function solution(n) {
+        //     let a= 2
+        //     // let 배열 = []
+        //     while (a !== n+1){
+        //         for (let i = 2; i <= n; i++) {
+        //             if(a%i === 0){
+        //                 배열.push(i)
+        //                 break
+        //             }
+        //         }
+        //         a++;
+        //     }
+        //     const set =  Array.from(new Set(배열));
+        //     console.log(set);
+            // return set.length;
+        // }
+        // > 테스트 9번까지만 통과함....흠...
+
+        // 다른사람의 풀이 
+        function solution(n){
+            let 확인 = true;
+            let count = 0;
+            for (let i = 2; i <= n; i++){
+                for (let j = 2; j*j <= i; j++){
+                    if(i%j == 0){
+                        확인 = false;
+                        break;
+                    }
+                    
+                }
+                if(확인 === true) count += 1
+                확인 = true;
+              
+            }
+            console.log(count);
+        }
+        // 효율성테스트에서 떨어짐
+        // 제곱을 이용함
+
+
+        // 다른사람의 풀이 (에라토스테네스의 체)
+        function solution(n) {
+            const arr = [];
+
+            // 인덱스 번호가 주어진 숫자 n과 대응하도록 
+            // 빈 배열을 만들고 원소는 true 값으로 채워준다.
+            // 여기서 true 는 소수라는 의미이다.
+            // 배열은 0부터 시작하므로, 주어진 숫자 n에 1을 더해준다.
+            for (let i = 0; i < n + 1; i += 1) {
+                arr.push(true);
+            }
+
+            // 주어진 수의 제곱근까지만 계산해서 불필요한 반복을 최소화한다.
+            // arr[i] 가 소수일 경우, 반복문을 진행한다.
+            // 맨 처음 시작하는 2는 소수이므로,
+            // 2를 제외한 2의 제곱부터, 제곱 값만 체크하여 지워나간다.
+            // 제곱근까지 반복한다.
+            for (let i = 2; i * i <= n; i += 1) {
+                if (arr[i]) {
+                    for (let j = i * i; j <= n; j += i) {
+                        arr[j] = false;
+                    }
+                }
+            }
+
+            // 0과 1은 소수가 아니므로 false 값으로 바꿔준다.
+            arr.splice(0, 2, false, false);
+
+            // 배열에서 true인 값만 걸러내고, true인 값의 개수를 출력한다.
+            const result = arr.filter((value) => {
+                return value !== false;
+            })
+
+            return result.length;
+        }
+
+        // 에라토스테네스의 체 : 에라토스테네스가 발견한 소수를 찾는 방법이다. 위에서 모든 자연수는 소수들의 곱으로 표현된다고 했다. 그래서 에라토스테네스는 주어진 숫자 값의 범위 안에서, 자기 자신을 제외한 배수 값을 지워 나갔다. 결국 소수만 남게 된다.
+        // 출처 : https://junkim.netlify.app/posts/programmers0807
+
+        // 다른사람 풀이
+        function numberOfPrime(n) {
+            var result = 0;
+            for (var i = 2; i <= n; i++) {
+                for (var j = 2; j < i; j++) {
+                    if (i % j == 0) break;
+                    if (i == j + 1) result++;
+                }
+            }
+            return result + 1; //n이 1이상의 정수라는 가정하에
+        }
+        
+
+    </script>
+</body>
+
+</html>
