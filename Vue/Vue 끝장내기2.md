@@ -25,7 +25,7 @@
 <img src="https://github.com/jina95/TIL/blob/master/images/%EC%BF%A0%ED%82%A4%EC%99%80%EC%8A%A4%ED%86%A0%EC%96%B4%EC%9D%98%EC%97%B0%EA%B2%B0.png"/>
 
 
-**컴포넌트단의 무거운 비지니스 로직이 많이 노출되기 보다는 다른파일에 코드로 옮기는 것이 좋다** 
+**❗️❗️컴포넌트단의 무거운 비지니스 로직이 많이 노출되기 보다는 다른파일에 코드로 옮기는 것이 좋다** 
 
 <img src="https://github.com/jina95/TIL/blob/master/images/actions%20%EB%A1%9C%20%EB%84%98%EA%B8%B4%20%EC%BD%94%EB%93%9C.png"/>
 
