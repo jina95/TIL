@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>코딩테스트 알고리즘 연습 문제</title>
+</head>
+
+<body>
+    <h1>문자열 내 p와 y의 개수</h1>
+    <em>문제 설명 </em>
+    <p>
+        대문자와 소문자가 섞여있는 문자열 s가 주어집니다. s에 'p'의 개수와 'y'의 개수를 비교해 같으면 True, 다르면 False를 return 하는 solution를 완성하세요. 'p', 'y' 모두 하나도 없는
+        경우는 항상 True를 리턴합니다. 단, 개수를 비교할 때 대문자와 소문자는 구별하지 않습니다.
+        
+        예를 들어 s가 pPoooyY면 true를 return하고 Pyy라면 false를 return합니다.
+    </p>
+    <ul>
+        제한 조건
+        <li>문자열 s의 길이 : 50 이하의 자연수</li>
+        <li>문자열 s는 알파벳으로만 이루어져 있습니다.</li>
+    </ul>
+    <script>
+        // 처음으로 풀었던 방식
+        // let s = prompt();
+        let s = "pPoooyY"
+        solution(s);
+
+        function solution(s) {
+            let pCount = 0;
+            let YCount = 0;
+            for (let i = 0; i < s.length; i++) {
+                if (s[i] === 'p' || s[i] === 'P') {
+                    pCount += 1;
+                }
+                if(s[i] === 'y' || s[i] === 'Y'){
+                    YCount += 1;
+                }
+            }
+            if(pCount === YCount) return true;
+            else return false;
+        };
+        
+
+        // 다른사람의 풀이
+        function numPY(s) {
+            return s.toUpperCase().split("P").length === s.toUpperCase().split("Y").length;
+        }
+        //.toUpperCase 대문자로 변환한 새로운 문자열.
+
+        // 다른사람의 풀이
+        function numPY(s) {
+            return s.match(/p/ig).length == s.match(/y/ig).length;
+        }
+        // match() 메서드는 문자열이 정규식과 매치되는 부분을 검색합니다.
+        // i : 대/소문자 무시(i) 플래그
+
+    </script>
+</body>
+
+</html>
