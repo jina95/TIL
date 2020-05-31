@@ -77,6 +77,87 @@
 - deleteCookie 에서는 til_auth & til_user 필요! 
 
 
+## 섹션17 : 프런트엔드 테스팅 소개
 
+**🔎**
 
+<img watchall>
+- jest(자바스크립트 테스팅이 기본적으로 jest 로 설정되어있음) 라는 도구에서 테스트 실행할때 watchall 이라는 옵션을 붙여서 테스트 코드파일이 변화됬을때마다 다시 자동으로 테스트 해주는 명령어
 
+- components / LoginForm.spec.js 파일을 만들어주고 터미널을 열어서 npm t 를 해주면 테스트가 실행된다./ control + c 하면 꺼짐!
+
+**테스트를 하는 목적?**
+- 각 페이지마다 기능이 있는데, 직접 코드를 치지 않아도 기능이 잘 돌아간다는 보장을 테스트코드를 통해서 할 수 있게 된다.
+- 일일이 기능을 손으로 확인하는 시간을 줄여준다.
+
+**Jest**
+- 페이스북이 개발한 자바스크립트의 테스팅 라이브러리
+- [Jest 공식 사이트](https://jestjs.io/en/)
+- vue cli 설치할때 test 를 설치했기 때문에 따로 설치하지 않아도 된다.
+ 
+ <pre><code> ex ) package.json : "@vue/cli-plugin-unit-jest" , "@vue/test-utils" 를 확인할수있다.</pre></code> 
+ 
+<img src="https://github.com/jina95/TIL/blob/master/images/spec%20js.png" width="30%">
+
+- 자바스크립트 파일에서 위와 같이 가운데에 spec 또는 test 가 붙는다면, 자바스크립트 테스트 파일.
+
+<img src="https://github.com/jina95/TIL/blob/master/images/jest%20testMatch.png" width="70%">
+
+- jest.config 파일에서 testMatch 부분이 없다면, test 폴더를 따로 만들어서 그안에 넣어줘야한다.
+- 하지만 위와 같이 코드를 작성하게 되면, 테스팅할 파일과 가장 가까운 위치에 위치하거나, __test__ 폴더를 만든 뒤 그 안에 넣어줄 수 있다.
+
+<img src="https://github.com/jina95/TIL/blob/master/images/%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%BD%94%EB%93%9C%20%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0.png" width="70%">
+
+- 간단하게 테스트코드를 작성해보았다.
+- 테스트 코드를 작성할때는 기능이 깨지는 케이스에 대해서 먼저 점검하고 점차 줄여가는것이 좋다.
+ <pre><code> ex ) expect(result).not.toBe(30);</pre></code> 
+- 여기서 빨간줄이 뜨는 이유는 eslint 에서 jest 문법을 이해하지 못했기 때문 > eslintrc.js 에서 수정
+
+ <pre><code>
+  env: {
+    node: true,
+    jest: true
+  },
+  </pre></code>
+  
+  - env 부분에 jest 를 추가해 준다.
+  
+  **뷰 컴포넌트 테스트 방법**
+  
+  <img src="https://github.com/jina95/TIL/blob/master/images/jest%20mount.png" width="70%">
+  
+  - jest 에서는 console.log 가 가능하다!
+  
+  **[Vue Test Utils 공식 문서](https://vue-test-utils.vuejs.org/guides/)**
+  - Vue Test Utils : vue js 를 위한 유닛 테스팅 공식 라이브러리
+  - vue cli 생성 했을떄 Vue Test Utils이라는 플러그인을 이미 선택했기때문에 import 해서 사용 가능.
+  - 밑에 처럼 이용 👇👇
+  
+  <img src="https://github.com/jina95/TIL/blob/master/images/vue-test%20util%20shallowMount.png" width="80%">
+  
+   <pre><code>
+  describe('LoginForm.vue', () => {
+  test('ID는 이메일 형식이어야 한다', () => {
+    const wrapper = shallowMount(LoginForm);
+    const idInput = wrapper.find('#username');
+    console.log(idInput.html());
+  });
+});
+ </pre></code>
+ 
+ - .find() : vue/test-utils 에서 제공, LoginForm 이 화면에 부착됬을때 template 안에 있는 특정 html 요소를 쫓아갈 수 있는 api
+ - 위와 같이 console.log(idInput.html()); 를 해준다면, 콘솔에 해당 html태그를 확인 할 수 있다.
+ 
+ <img src="https://github.com/jina95/TIL/blob/master/images/%EC%82%AC%EC%9A%A9%EC%9E%90%EA%B4%80%EC%A0%90%20%EC%95%84%EB%8B%8C%20%ED%85%8C%EC%8A%A4%ED%8A%B8.png" width="80%">
+
+- 위와 같은 코드는 사용자 관점이 아닌 테스트 코드이다.
+- 그렇다면 어떻게 사용자 관점의 코드를 쓸 수 있을까?
+
+<img src="https://github.com/jina95/TIL/blob/master/images/%EC%82%AC%EC%9A%A9%EC%9E%90%EA%B4%80%EC%A0%901.png" width="80%">
+
+ <pre><code>
+ expect(button.element.disabled).toBeTruthy();
+  // .toBeTruthy() : 앞에 있는 값이 true 인지 아닌지
+  </pre></code>
+  
+  
