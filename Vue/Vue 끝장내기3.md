@@ -57,7 +57,24 @@
 - next 를 호출했을때만 beforeEach 의 특정로직 예를 들어 위와 같은 코드에서는 로그를 찍고 이동하는 로직을 확인 할 수있다.
 - next 호출해줘야지만 다음페이지로 이동할 수 있다.
 
+<img src="https://github.com/jina95/TIL/blob/master/images/meta%20auth%20true.png" width="70%">
+<img src="https://github.com/jina95/TIL/blob/master/images/meta%20auth%20true%20if.png" width="70%">
 
+- 라우터 페이지 속성에 meta 안에 auth 속성이 true 면 인증이 필요하다가 뜰 것.
+- meta auth 를 통해 권한을 부여했다.
+- meta auth true 를 이용해서 이 페이지는 권한이 필요하다까지 정의함.
+
+**로그인 하지 않은 사용자를 인증이 필요한 페이지에 접근 할 수 없도록 라우터 네비게이션 가드 코드 추가**
+<img src="https://github.com/jina95/TIL/blob/master/images/meta%20auth%20store.getters.isLogin.png" width="70%">
+
+**로그아웃 시 쿠키 지우는 코드**
+
+<img src="https://github.com/jina95/TIL/blob/master/images/appheader%20%ED%86%A0%ED%81%B0%20%EC%BF%A0%ED%82%A4%20%EC%82%AD%EC%A0%9C.png" width="70%">
+<img src="https://github.com/jina95/TIL/blob/master/images/store%20%ED%86%A0%ED%81%B0%EA%B0%92%20%EC%A7%80%EC%9A%B0%EA%B8%B0.png" width="50%">
+
+- appheader 와 store 에 코드 수정
+- store 에 토큰값을 지우는 코드를 추가해주고, utils/cookies.js 에 있는 { deleteCookie } 를 이용해서 appheader 에서 쿠키값을 지워준다.
+- deleteCookie 에서는 til_auth & til_user 필요! 
 
 
 
