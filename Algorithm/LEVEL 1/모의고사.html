@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>코딩테스트 알고리즘 연습 문제</title>
+</head>
+<body>
+    <h1>모의고사</h1>
+    <em>문제 설명 </em>
+    <p>
+        수포자는 수학을 포기한 사람의 준말입니다. 수포자 삼인방은 모의고사에 수학 문제를 전부 찍으려 합니다. 
+        수포자는 1번 문제부터 마지막 문제까지 다음과 같이 찍습니다.
+        
+        1번 수포자가 찍는 방식: 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, ...
+        2번 수포자가 찍는 방식: 2, 1, 2, 3, 2, 4, 2, 5, 2, 1, 2, 3, 2, 4, 2, 5, ...
+        3번 수포자가 찍는 방식: 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, ...
+        
+        1번 문제부터 마지막 문제까지의 정답이 순서대로 들은 배열 answers가 주어졌을 때, 
+        가장 많은 문제를 맞힌 사람이 누구인지 배열에 담아 return 하도록 solution 함수를 작성해주세요.
+    </p>
+    <ul> 
+        제한 조건
+        <li>시험은 최대 10,000 문제로 구성되어있습니다.</li>
+        <li>문제의 정답은 1, 2, 3, 4, 5중 하나입니다.</li>
+        <li>가장 높은 점수를 받은 사람이 여럿일 경우, return하는 값을 오름차순 정렬해주세요.</li>
+    </ul>
+<script>
+    // 처음으로 풀었던 방식 - 풀지 못했다...
+    let answers = [1, 3, 2, 4, 2]
+    console.log(solution(answers));
+    
+    
+    
+    // function solution(answers) {
+ 
+    //     let num = 1;
+    //     let a = [1, 2, 3, 4, 5]
+    //     let aTrue = 0
+    //     let b = [2, 1, 2, 3, 2, 4, 2, 5]
+    //     let bTrue = 0
+    //     let c = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
+    //     let cTrue = 0
+    //     let total = []
+
+            
+    //     for (let i = 0; i < answers.length; i++) {
+    //         if(a.length >=  answers.length) {
+    //             if (a[i] === answers[i]) aTrue += 1;
+    //             else break
+    //         }else {
+    //             a = [...a.join("").repeat(num).split("").map(Number)]
+    //             // 배열 반복
+    //             num ++
+    //         }
+    //         if(b.length >= answers.length) {
+    //             if (b[i] === answers[i]) bTrue += 1;
+    //             else break
+    //         }else {
+    //             b = [...b.join("").repeat(num).split("").map(Number)]
+    //             num ++
+    //         }
+    //         if(c.length >= answers.length) {
+    //             if (a[i] === answers[i]) cTrue += 1;
+    //             else break
+    //         }else {
+    //             c = [...c.join("").repeat(num).split("").map(Number)]
+    //             num ++
+    //         }
+    //     }
+    //     console.log(aTrue, bTrue, cTrue);
+
+        
+    //     if(aTrue !== 0) total.push(1)
+    //     if(bTrue !== 0) total.push(2)
+    //     if (cTrue !== 0) total.push(3)
+
+        
+    // }
+
+    // // 다른사람 답 보고 두번째로 풀었던 방식 - 테스트 11,12,13,14 불통
+    // function solution(answers) {
+    //     let num = 1;
+    //     let a = [1, 2, 3, 4, 5]
+    //     let aTrue = 0
+    //     let b = [2, 1, 2, 3, 2, 4, 2, 5]
+    //     let bTrue = 0
+    //     let c = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
+    //     let cTrue = 0
+    //     let total = []
+    //     let answer = []
+
+
+    //     for (let i = 0; i < answers.length; i++) {
+    //         if (a.length >= answers.length) {
+    //             if (a[i] === answers[i]) aTrue += 1;
+    //         } else {
+    //             a = [...a.join("").repeat(num).split("").map(Number)]
+    //             num++
+    //         }
+    //         if (b.length >= answers.length) {
+    //             if (b[i] === answers[i]) bTrue += 1;
+    //         } else {
+    //             b = [...b.join("").repeat(num).split("").map(Number)]
+    //             num++
+    //         }
+    //         if (c.length >= answers.length) {
+    //             if (c[i] === answers[i]) cTrue += 1;
+    //         } else {
+    //             c = [...c.join("").repeat(num).split("").map(Number)]
+    //             num++
+    //         }
+    //     }
+        
+    //     total.push(aTrue);
+    //     total.push(bTrue);
+    //     total.push(cTrue);
+
+    //     let max = Math.max(...total)
+    //     for (let i = 0; i < total.length; i++) {
+    //         if (total[i] == max) {
+    //             answer.push(i + 1)
+    //         }
+    //     }
+    //     return answer;
+    // }
+
+
+    // 세번째 - 정리하면서 다시 풀어보자. - 나름 정리한다고 해봤는데도 11,12,13,14 불통!
+    function solution(answers) {
+        let num = 1;
+        let a = [1, 2, 3, 4, 5]
+        let b = [2, 1, 2, 3, 2, 4, 2, 5]
+        let c = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
+        let total = [0,0,0]
+        let answer = []
+
+
+        for (let i = 0; i < answers.length; i++) {
+            if (a.length >= answers.length) {
+                if (a[i] === answers[i]) {
+                    total[0] += 1
+                }
+            } else {
+                a = [...a.join("").repeat(num).split("").map(Number)]
+                num++
+            }
+            if (b.length >= answers.length) {
+                if (b[i] === answers[i]) {
+                    total[1] += 1;
+                }
+            } else {
+                b = [...b.join("").repeat(num).split("").map(Number)]
+                num++
+            }
+            if (c.length >= answers.length) {
+                if (c[i] === answers[i]) {
+                    total[2] += 1;
+                }
+            } else {
+                c = [...c.join("").repeat(num).split("").map(Number)]
+                num++
+            }
+        }
+
+        let max = Math.max(...total)
+        for (let i = 0; i < total.length; i++) {
+            if (total[i] == max) {
+                answer.push(i + 1)
+            }
+        }
+        return answer;
+    }
+
+    // 다른사람의 풀이
+    // function solution(answers){
+    //     var answer = [];
+    //     var user = [ [1, 2, 3, 4, 5], [2, 1, 2, 3, 2, 4, 2, 5], [3, 3, 1, 1, 2, 2, 4, 4, 5, 5] ]
+    //     var point = [0, 0, 0]
+
+    //     for (let i = 0; i < answers.length; i++) {
+    //         if(user[0][i%5] == answers[i]) point[0] ++
+    //         if(user[1][i%8] == answers[i]) point[1] ++
+    //         if(user[2][i%10] == answers[i]) point[2] ++  
+    //     }
+
+    //     var max = Math.max(...point);
+    //     for (let i = 0; i < point.length; i++) {
+    //         if(point[i] == max){
+    //             answer.push(i+1)
+    //         }  
+    //     }
+    //     return answer;
+    // }
+    // 나머지연산자를 쓸 생각을 못했다...
+    // max 도 쓸생각을 못했다..
+   
+
+</script>
+</body>
+</html>
