@@ -15,26 +15,31 @@
 - 터미널에서 파일 경로로 들어갈때 커맨드누르면서 폴더를 드래그 하면 경로가 자동으로 입력!
 - bash 에서 실행 : 
 
-<pre><code> - git init
+<pre><code> 
+- git init
 - git config --global user.email "내이메일"
 - git config --global user.name "내이름"
 </pre></code>
 
 - 위에 부분에서 해맸다.. user.email 이후에 내 이메일을 넣어야함!
 
-<pre><code> - git add README.text
+<pre><code> 
+- git add README.text
 - git commit -m "사이트 설명 추가"
-내용을 수정한다. 
+**파일의 내용을 수정한다.**
 - git add README.text
 - git commit -m "설명 업데이트"
 </pre></code>
 
 
-<pre><code>- git log </pre></code>
+<pre><code>
+- git log 
+</pre></code>
 
 - 하면 위에 커밋한 두개를 확인할 수있고 앞의 아이디를 복사해서 
 
-<pre><code>- git checkout 8081393(아이디 전체 넣어도 됨) 
+<pre><code>
+- git checkout 8081393(아이디 전체 넣어도 됨) 
 - git checkout -
 </pre></code>
 
