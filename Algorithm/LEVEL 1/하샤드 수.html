@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>코딩테스트 알고리즘 연습 문제</title>
+</head>
+<body>
+    <h1>하샤드 수</h1>
+    <em>문제 설명 </em>
+    <p>
+        양의 정수 x가 하샤드 수이려면 x의 자릿수의 합으로 x가 나누어져야 합니다. 예를 들어 18의 자릿수 합은 1+8=9이고, 18은 9로 나누어 떨어지므로 18은 하샤드 수입니다. 자연수 x를 입력받아 x가 하샤드
+        수인지 아닌지 검사하는 함수, solution을 완성해주세요.
+    </p>
+    <h3>제한 조건</h3>
+    <ul>
+        <li>x는 1 이상, 10000 이하인 정수입니다.</li>
+    </ul>
+<script>
+    // 처음으로 풀었던 방식
+    let x = 11
+
+    console.log(solution(x));
+    
+    function solution(x) { 
+       let str = x.toString()
+        //    let arr = String(x).split(''); 로 만들어서 for 문을 돌려줄수 있다.
+       let value = 0
+       for (let i = 0; i < str.length; i++) {
+           value += str[i] *1
+        //    value += Number(arr[i])
+       }
+       return x % value == 0 ? true : false  
+    }
+
+    // 다른사람의 풀이
+    function Harshad(n) {
+        return !(n % (n + "").split("").reduce((a, b) => +b + +a));
+    }
+
+    //split = 주어진 문자열을 separator("")마다 끊은 부분 문자열을 담은 Array. > n = 11 이어서 ""로 감싸준다 아마도..? > n.split("") 하면 안된다. ""이 없는데, 끊으려고하니까!
+    // +b + +a > a,b 가 문자(?)형태여서! (b*1) + (a*1) == +b + +a 
+    // 만약 a + b 로 위에 식을 바꾸면 ab 형태가 된다.
+
+</script>
+</body>
+</html>
