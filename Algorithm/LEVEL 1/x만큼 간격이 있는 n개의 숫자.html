@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>코딩테스트 알고리즘 연습 문제</title>
+</head>
+<body>
+    <h1>x만큼 간격이 있는 n개의 숫자</h1>
+    <em>문제 설명 </em>
+    <p>
+        함수 solution은 정수 x와 자연수 n을 입력 받아, x부터 시작해 x씩 증가하는 숫자를 n개 지니는 리스트를 리턴해야 합니다. 다음 제한 조건을 보고, 조건을 만족하는 함수, solution을 완성해주세요.
+    </p>
+    <h3>제한 조건</h3>
+    <ul>
+        <li>x는 -10000000 이상, 10000000 이하인 정수입니다.</li>
+        <li>n은 1000 이하인 자연수입니다.</li>
+    </ul>
+<script>
+    // 처음으로 풀었던 방식
+    let x = 2;
+    let n = 5;
+
+    console.log(solution(x,n));
+    
+    function solution(x, n) {
+        let answer=[]
+        for (let i = 1; i<= n; i++) {
+            answer.push(x*i)
+        }
+        console.log(answer); 
+    }
+
+
+    // 다른사람의 풀이
+    function solution(x, n) {
+        return Array(n).fill(x).map((v, i) => (i + 1) * v)
+    }
+    // Array(n) = 빈 배열 n개가 만들어진다
+    // 빈 배열에 x 을 하나씩 다 집어 넣는다.
+    // x === v > 각 배열마다 돌면서 +1 * v 해준다.
+
+</script>
+</body>
+</html>
