@@ -58,9 +58,9 @@
 
 **🖊02.브랜치 실습 기본:만들고, 이동한다**
 
-<img src="새브랜치만들기" />
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/%EC%83%88%EB%B8%8C%EB%9E%9C%EC%B9%98%20%EB%A7%8C%EB%93%A4%EA%B8%B0.png" width="70%" />
 
-- 이름에 / 를 넣으면 'feature' 가 마치 폴더처럼 구분된다.(소스트리의 편의기능)
+- 이름에 / 를 넣으면 'feature' 가 마치 폴더처럼 구분된다.(소스트리의 편의기능)
 - 이후에 커밋을 하고 현재 브랜치 까지 푸시한다
 > 이때 나는 에러가 났는데, 터미널을 통해 해결하였다
 
@@ -77,7 +77,7 @@
 - 앞은 기존 상태, 뒤는 달라진 상태, 즉 뒤에 상태로 그대로 가면 되는 > 빨리감기 병합
 - 앞과 뒤가 다르게 겹쳐지는 상태 > 충돌 상태
 
-<img src="병합하기">
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/%EB%B3%91%ED%95%A9%ED%95%98%EA%B8%B0.png" width="50%">
 
 - master 브랜치로 checkout 후 병합하고싶은 커밋에서 오른쪽을 눌러 병합하기를 눌러준다.(좌측 사이드바에서도 가능)
 - 이후 원격저장소로 push 해준다.
@@ -87,7 +87,7 @@
 - 병합할때 충돌이 났을때, 팝업창을 끄고 '커밋하지 않은 변경사항' 을 눌러보면 어느파일에서 충돌이 생겼는지를 알 수 있다.
 - vs코드로 돌아가서 그 파일을 살피게 되면 이와같은 코드를 볼 수 있다.
 
-<img src="충돌">
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/%EC%B6%A9%EB%8F%8C.png" width="50%">
 
 - 6라인 '======'을 기준으로 위가 베이스브랜치(ex feature/cart) 밑이 병합의 대상 브랜치(ex master)
 - 이후 수동으로 수정한 뒤 (HEAD 이런내용들 지워도 됨) 스테이지에 올리면 충돌하지 않는것을 확인 할 수 있다.
@@ -100,7 +100,7 @@
 - 이 전과 같이 브랜치를 추가하고 커밋하고, 원격저장소에 push하게 되면, GitHub 에서 초록색버튼(compare..)을 가진 노란색 음영을 만날 수 있다. 
 - 초록 버튼을 누르게 되면 밑에와 같은 창이 뜬다.
 
-<img src="풀리퀘스트">
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/%ED%92%80%20%EB%A6%AC%ED%80%98%EC%8A%A4%ED%8A%B8.png" width="70%">
 
 - 풀 리퀘스트 : 정중하게 병합을 요청할 수 있는 메세지를 적을 수 있는 페이지.
 - 여기서 설정할 것은 베이스브랜치, 비교브랜치.
@@ -114,21 +114,21 @@
 5. 동료개발자가 코드를 이해하는데 도움이 되는 설명을 적어줌. (스크린샷을 첨부하거나 테스트방법 적으면 좋음)
 6. 저장소의 협력자가 여러명이라면 몇명을 콕 찝어서 검토요청할 수 있음. 보통 같은 팀원이나 해당 기능과 연관된 동료
 7. 이 풀 리퀘스트를 담당하는 동료를 적음. 보통 자기자신
-8. 이 풀 리퀘스트에 대한 라벨을 달아줌. ex [버그], [프론트엔드], [리뷰필요], [백엔드] ...
+8. 이 풀 리퀘스트에 대한 라벨을 달아줌. ex [버그], [프론트엔드], [리뷰필요], [백엔드] ...
 
-<img src="머지풀리퀘스트">
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/%EB%A8%B8%EC%A7%80%ED%92%80%EB%A6%AC%ED%80%98%EC%8A%A4%ED%8A%B8.png" width="60%">
 
 - 위의 버튼을 누르면 밑에와 같은 병합할 수 있는 버튼이 보인다.
 
-<img src="컨펌머지">
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/%EC%BB%A8%ED%8E%8C%EB%A8%B8%EC%A7%80.png" width="50%">
 
 - 이렇게 GitHub 에서도 병합을 할 수 있다.
 
-<img src="예의바른병합">
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/%EC%98%88%EC%9D%98%EB%B0%94%EB%A5%B8%EB%B3%91%ED%95%A9.png" width="50%">
 
 - 닫혀진 풀리퀘스트는 탭에 closed 에서 볼 수 있다.
 
-<img src="닫힌풀리퀘스트">
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/%EB%8B%AB%ED%9E%8C%ED%92%80%EB%A6%AC%ED%80%98%EC%8A%A4%ED%8A%B8.png" width="50%">
 
 - 이후 소스트리에서는 마스터가 예전커밋을 가리키고 있는것을 볼 수있는데, 이때 패치(모든 원격저장소에서 가져오기 체크)를 눌러주면 해결 된다.
 - 다시 마스터에서 checkout 을 해주고, pull 아이콘 클릭하면 끝!
@@ -138,7 +138,7 @@
 - 프로그램을 출시하는것을 릴리즈라고한다.
 - 병합을 마친 브랜치를 서버에 올려서 사용자들이 쓸 수 있게 배포하고, 현재 코드상태를 버전 'v1.0.0'이라고 기록 > 태그를 통해!
 
-<img src="태그추가">
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/%ED%83%9C%EA%B7%B8%EC%B6%94%EA%B0%80.png" width="50%">
 
 - 이후 푸시를 하면 GitHub release 탭에서 확인 가능 
 
