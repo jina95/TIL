@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>코딩테스트 알고리즘 연습 문제</title>
+</head>
+<body>
+    <h1>짝수와 홀수</h1>
+    <em>문제 설명 </em>
+    <p>
+        정수 num이 짝수일 경우 Even을 반환하고 홀수인 경우 Odd를 반환하는 함수, solution을 완성해주세요.
+    </p>
+    <h3>제한 조건</h3>
+    <ul>
+        <li>num은 int 범위의 정수입니다.</li>
+        <li>0은 짝수입니다.</li>
+    </ul>
+<script>
+    // 처음으로 풀었던 방식
+    let num = 5;
+
+    console.log(solution(num));
+    
+    function solution(num) {
+        return num % 2 === 0 ? "Even" : "Odd"
+    }
+
+
+    // 다른사람의 풀이
+    function evenOrOdd(num) {
+        return num % 2 ? "Odd" : "Even";
+    }
+
+    // 나머지가 나오면 true 고 0 이면 false 니까
+</script>
+</body>
+</html>
