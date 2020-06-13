@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>코딩테스트 알고리즘 연습 문제</title>
+</head>
+<body>
+    <h1>최대공약수와 최소공배수</h1>
+    <em>문제 설명 </em>
+    <p>
+        두 수를 입력받아 두 수의 최대공약수와 최소공배수를 반환하는 함수, solution을 완성해 보세요. 배열의 맨 앞에 최대공약수, 그다음 최소공배수를 넣어 반환하면 됩니다. 예를 들어 두 수 3, 12의 최대공약수는
+        3, 최소공배수는 12이므로 solution(3, 12)는 [3, 12]를 반환해야 합니다.
+    </p>
+    <h3>제한 조건</h3>
+    <ul>
+        <li>두 수는 1이상 1000000이하의 자연수입니다.</li>
+    </ul>
+<script>
+    // 처음으로 풀었던 방식
+    let n = 2;
+    let m = 5;
+
+    console.log(solution(n,m));
+    
+    function solution(n, m) {
+        let array = []
+        for (let i = 0; i <= m; i++) {
+            if (n % i == 0 && m % i == 0) array.push(i)
+        }
+        let maxNum = Math.max.apply(null, array)
+        return [maxNum, n * m / maxNum]
+    }
+    // n과 m 를 나눴을때 0 이 되는(둘다 해당되는) 수를 array 에 넣고
+    // 그 수중에 가장 큰수를 찾아준다 (최대공약수)
+    // 두개의 수를 곱하고 최대공약수로 나눠주면 최소공배수가 된다. 
+
+
+    // 다른사람의 풀이
+    function gcdlcm(a, b) {
+        var r;
+        for (var ab = a * b; r = a % b; a = b, b = r) { }
+        return [b, ab / b];
+    }
+
+    // for문인데,.. 이해가 안된다 흠..
+    // 최소공약수를 어떻게 구한걸까?? ++ 가 안됬는데 ..!!
+
+    // 다른사람의 풀이
+    function gcdlcm(a, b) {
+        var answer = [];
+        var minNum = Math.min(a, b);
+        var maxNum = Math.max(a, b);
+        answer[0] = gcd(minNum, maxNum);
+        answer[1] = lcm(minNum, maxNum);
+        return answer;
+    }
+    // 최대공약수
+    function gcd(minNum, maxNum) {
+        return (minNum % maxNum) === 0 ? maxNum : gcd(maxNum, minNum % maxNum);
+    }
+    // 최소공배수
+    function lcm(minNum, maxNum) {
+        return minNum * maxNum / gcd(minNum, maxNum);
+    }
+
+    유클리드 호제법 : 2개의 자연수(또는 정식) a, b에 대해서 a를 b로 나눈 나머지를 r이라 하면(단, a > b), a와 b의 최대공약수는 b와 r의 최대공약수와 같다.이 성질에 따라, b를 r로 나눈 나머지 r'를 구하고, 다시 r을 r'로 나눈 나머지를 구하는 과정을 반복하여 나머지가 0이 되었을 때 나누는 수가 a와 b의 최대공약수이다.
+
+    1071과 1029의 최대공약수를 구하면,
+
+    1071은 1029로 나누어떨어지지 않기 때문에, 1071을 1029로 나눈 나머지를 구한다.≫ 42
+    1029는 42로 나누어떨어지지 않기 때문에, 1029를 42로 나눈 나머지를 구한다.≫ 21
+    42는 21로 나누어떨어진다.
+    따라서, 최대공약수는 21이다.
+
+    // 하나씩 다 계산해본 결과 이해!
+
+</script>
+</body>
+</html>
