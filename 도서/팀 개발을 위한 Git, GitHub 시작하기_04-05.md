@@ -73,6 +73,7 @@ git push --force origin master</code></pre>
 - New repository 생성 후 클론을 누르고 주소 복사 후, 소스트리-원격저장소에서 해당 주소를 클론 눌러준다.
 
 **🖊02.amend: 수정못한 파일이 있어요, 방금 만든 커밋에 추가하고 싶어요.**
+
 - 커밋을 방금 했는데 추가할 파일이 있다면??
 - 소스트리 커밋에서 커밋옵션 - 마지막 커밋 수정 버튼 누른뒤 커밋하면 가능!
 - 커밋 메세지 만도 수정가능하다! 위와 같이 커밋옵션 - 마지막 커밋 수정 버튼 누른뒤 메세지 수정하고 커밋하면 완료!
@@ -85,7 +86,7 @@ git push --force origin master</code></pre>
 vi > 저장 종료 :wq!
 esc 눌러야 명령어 입력
 r 커서위치 한글자 교체
-R 커서위치부터 esc 누를때까지 다른글자로 교체</pre></code>
+R 커서위치부터 esc 누를때까지 다른글자로 교체</pre></code>
 참고 : [vi edit](https://wiki.kldp.org/KoreanDoc/html/Vim_Guide-KLDP/Vim_Guide-KLDP.html)
 
 **🖊03.cherry-pick: 저 커밋 하나만 떼서 지금 브랜치에 붙이고 싶어요**
@@ -93,7 +94,7 @@ R 커서위치부터 esc 누를때까지 다른글자로 교체</pre></code>
 - 다른 브랜치의 커밋 하나만 내 브랜치에 반영하기 : cherry-pick
 - 해당 브랜치에 있는 상태에서 복제하길 원하는 커밋에 오른쪽마우스 누르고 체리픽 클릭!
 
-<img src="체리픽">
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/%EC%B2%B4%EB%A6%AC%ED%94%BD.png" width="60%">
 
 - 위와 같이 두개 다 체크한 뒤 continue 버튼을 눌러준다.
 - 이렇게 가져오게 되면, 내용은 가져오지만 같은 커밋은 아니기 때문에 커밋ID는 다르다.
@@ -102,12 +103,12 @@ R 커서위치부터 esc 누를때까지 다른글자로 교체</pre></code>
 
 - Soft / Mixed reset : 모든 기억을 남기면서 브랜치를 되돌리기
 
-<img src="커밋으로초기화">
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/%EC%BB%A4%EB%B0%8B%EC%9C%BC%EB%A1%9C%20%EC%B4%88%EA%B8%B0%ED%99%94.png" width="50%">
 
 - 돌리고 싶은 커밋의 오른쪽 마우스 누르고 [~를 이 커밋으로 초기화] 클릭
 - 밑에와 같은 창이 뜬다
 
-<img src="초기화옵션창">
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/%EC%B4%88%EA%B8%B0%ED%99%94%EC%98%B5%EC%85%98%EC%B0%BD.png" width="60%">
 
 - Hard = 작업 공간이 더럽던 깨끗하던, 깔끔하게 히스토리를 돌리겠다. (변경사항 날려먹음)
 - Mixed = 변경사항을 작업공간에 뽑아둠, 커밋은 없던걸로 되돌렸지만 ~.md 파일을 만든 기록이 스테이지 아래에 살아있다 > 다시 수정 가능 (무엇을 스테이지에 올릴지 고민 가능)
@@ -120,7 +121,7 @@ R 커서위치부터 esc 누를때까지 다른글자로 교체</pre></code>
 - revert : 커밋의 변경사항 되돌리는 새로운 커밋 만들기
 - 이상하게, 잘못 커밋했을때 되돌리는 방법 : 해당 커밋의 오른쪽 마우스 클릭 후 밑에와 같이 커밋 되돌리기 버튼 클릭
 
-<img src="커밋 되돌리기">
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/%EC%BB%A4%EB%B0%8B%EB%90%98%EB%8F%8C%EB%A6%AC%EA%B8%B0.png" width="50%">
 
 **🖊06.stash: 변경사항을 잠시 다른곳에 저장하고 싶어요, 커밋은 안만들래요**
 
