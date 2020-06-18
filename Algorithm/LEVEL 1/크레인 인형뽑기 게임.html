@@ -41,67 +41,64 @@
     
     console.log(solution(board, moves));
     
-    // 처음으로 풀었던 방식
+    // 다른사람 풀이
     function solution(board, moves) {
-        let answer= [];
         let array = []
-        // console.log(board[0].slice(board[0].length), 1);
-        // console.log(board[moves[0]-1][board[moves[0]-1].length - 1]);
-        
-        // console.log(board[moves[0]].slice(board[moves[0]].length, 1));
+        let answer = 0;
         for (let i = 0; i < moves.length; i++) {
-            array.push(board[moves[i] - 1][board[moves[i] - 1].length - 1])
-            board[moves[i]-1].pop();
+            let index = moves[i]-1
+            for (let j = 0; j < board.length; j++) {
+                if(board[j][index] !== 0){
+                    if(array[array.length-1] === board[j][index]){
+                        array.pop();
+                        answer += 2;
+                    }else {
+                        array.push(array[j][index])
+                    }
+                    board[j][index] = 0;
+                    break;
+                }
+                
+            }
+            
         }
-
-        let arr = array.filter((x, i) =>{
-            console.log(x - array[i+1]);
-            
-            // console.log(x- array[i+1]);
-            
-            // return x > 0 && x[i] - x[i+1] == 0
-        })
-
-        // console.log(arr);
+        console.log(array);
         
-        // let aarrr = array.filter(x => {
-        //     return x > 0 && x - x ==0
-        // })
-        // for (let i = 0; i < array.length; i++) {
-            // console.log(array.length);
-            
-            // let i = 0;
-            // while (i < array.length) {
-            //     if(array[i] > 0 ) {
-            //         if(array[i] - array[i + 1] == 0) answer.push(array[i])
-            //     }
-            //     i ++ ;
-            // }
-            // console.log(answer);
-            
-            
-        // }
-        
-            
-        
-
-        // console.log(aarrr);
-        
-        // for (let index = 0; index < array.length; index++) {
-        //     const element = array[index];
-            
-        // }
-
-        // if()
-        // console.log(answer);
-        
-        
+        return answer;
     }
 
-    // 배열 뒤에서 부터 moves 에 맞춰 잘라서 그걸 array에 담고
-    // array 의 앞뒤가 같은지 확인하고 제거하는데 그 제거를 카운트 해서 return answer 
 
     // 다른사람의 풀이
+    // function solution(board, moves) {
+    //     let array = []
+    //     let answer = 0;
+    //     for (let i = 0; i < moves.length; i++) {
+    //         let doll = pickUp(board, moves[i]-1)
+    //         if(doll){
+    //             if(array[array.length-1] === doll){
+    //                 array.pop();
+    //                 answer += 2
+    //             }else {
+    //                 array.push(doll)
+    //             }
+    //         }
+            
+    //     }
+    //     return answer;
+    //     function pickUp(board, index){
+    //         let newBoard = board
+    //         for (let i = 0; i < newBoard.length; i++) {
+    //             if(newBoard[i][index] !== 0){
+    //                 let doll = newBoard[i][index];
+    //                 newBoard[i][index] = 0
+    //                 return doll;
+    //             }
+                
+    //         }
+    //     }
+    // }
+ 
+
     
 </script>
 </body>
