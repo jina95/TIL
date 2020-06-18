@@ -41,62 +41,65 @@
     
     console.log(solution(board, moves));
     
-    // 다른사람 풀이
+    // 다른사람 풀이 + 혼자 다시 풀어 봄
     function solution(board, moves) {
         let array = []
         let answer = 0;
         for (let i = 0; i < moves.length; i++) {
             let index = moves[i]-1
+            // console.log(index);
             for (let j = 0; j < board.length; j++) {
                 if(board[j][index] !== 0){
-                    if(array[array.length-1] === board[j][index]){
+                    // console.log(board[j][index]);
+
+                    if(array[array.length -1] === board[j][index]){
                         array.pop();
-                        answer += 2;
+                        answer += 2
+                        
                     }else {
-                        array.push(array[j][index])
+                        array.push(board[j][index])
                     }
                     board[j][index] = 0;
                     break;
+                    
                 }
                 
             }
             
         }
         console.log(array);
-        
-        return answer;
     }
 
 
     // 다른사람의 풀이
-    // function solution(board, moves) {
-    //     let array = []
-    //     let answer = 0;
-    //     for (let i = 0; i < moves.length; i++) {
-    //         let doll = pickUp(board, moves[i]-1)
-    //         if(doll){
-    //             if(array[array.length-1] === doll){
-    //                 array.pop();
-    //                 answer += 2
-    //             }else {
-    //                 array.push(doll)
-    //             }
-    //         }
+    function solution(board, moves) {
+        let array = []
+        let answer = 0;
+        for (let i = 0; i < moves.length; i++) {
+            let doll = pickUp(board, moves[i]-1)
+            if(doll){
+                if(array[array.length-1] === doll){
+                    array.pop();
+                    answer += 2
+                }else {
+                    array.push(doll)
+                }
+            }
             
-    //     }
-    //     return answer;
-    //     function pickUp(board, index){
-    //         let newBoard = board
-    //         for (let i = 0; i < newBoard.length; i++) {
-    //             if(newBoard[i][index] !== 0){
-    //                 let doll = newBoard[i][index];
-    //                 newBoard[i][index] = 0
-    //                 return doll;
-    //             }
+        }
+        return answer;
+        function pickUp(board, index){
+            let newBoard = board
+            for (let i = 0; i < newBoard.length; i++) {
+                if(newBoard[i][index] !== 0){
+                    let doll = newBoard[i][index];
+                    newBoard[i][index] = 0
+                    return doll;
+                }
                 
-    //         }
-    //     }
-    // }
+            }
+        }
+    }
  
 
     
