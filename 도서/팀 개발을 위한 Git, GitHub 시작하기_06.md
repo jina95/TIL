@@ -41,7 +41,7 @@
 </tr>
 <tr>
 <td>cd …/</td>
-<td>현재 폴더의 상위폴더로 이동</td>
+<td>현재 폴더의 상위폴더로 이동</td>
 </tr>
 <tr>
 <td>mkdir 새폴더이름</td>
@@ -177,7 +177,7 @@ $ cat file1.md     # cat 을 앞에 붙여주면 뒤에 파일을 터미널 화�
 <p><strong>커밋 확인해보기</strong></p>
 <pre><code>$ git status     #깨끗한상태임을 알려준다
 $ git log --oneline --graph --all --decorate </code></pre>
-<img src="git log">
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/git%20log.png" width="60%">
 <p><strong>좋은 커밋 메세지의 7가지 규칙</strong></p>
 <ol>
 <li>제목과 본문을 빈 줄로 분리한다.</li>
@@ -196,7 +196,7 @@ $ git push </code></pre>
 <ul>
 <li>위와 같이 push를 하게 되면 밑에와 같은 에러가 뜬다.</li>
 </ul>
-<img src="git push error">
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/git%20push%20error.png" width="60%">
 <ul>
 <li>업스트림 브랜치는 로컬저장소와 연결된 원격저장소를 일컫는 단어이다.</li>
 <li>업스트림 브랜치 설정을 위해 에러메세지가 알려준대로 --set-upstream 을 쓰거나 단축 명령인 -u 옵션을 사용</li>
