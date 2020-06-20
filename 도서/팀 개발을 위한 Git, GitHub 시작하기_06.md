@@ -1,8 +1,3 @@
----
-
-
----
-
 <h1 id="팀-개발을-위한-git-github-시작하기">팀 개발을 위한 Git, GitHub 시작하기</h1>
 <hr>
 <h2 id="chapter-6--part-1에서-수행했던-기본-명령어">CHAPTER 6 : PART 1에서 수행했던 기본 명령어</h2>
