@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>코딩테스트 알고리즘 연습 문제</title>
+</head>
+<body>
+    <h1>정수 제곱근 판별</h1>
+    <em>문제 설명 </em>
+    <p>
+        임의의 양의 정수 n에 대해, n이 어떤 양의 정수 x의 제곱인지 아닌지 판단하려 합니다.
+        n이 양의 정수 x의 제곱이라면 x+1의 제곱을 리턴하고, n이 양의 정수 x의 제곱이 아니라면 -1을 리턴하는 함수를 완성하세요.
+    </p>
+    <h3>제한 조건</h3>
+    <ul>
+        <li>n은 1이상, 50000000000000 이하인 양의 정수입니다.</li>
+    </ul>
+<script>
+    // 예를 들어 확인할 숫자 || 글자
+    let n = 3;
+    
+    console.log(solution(n));
+    
+    // 처음으로 풀었던 방식
+    function solution(n) {
+        let 제곱 = 0;
+        if(!Number.isInteger(Math.sqrt(n))) return -1
+        else {
+            제곱 = Math.sqrt(n) + 1
+            return 제곱 * 제곱
+        }  
+    }
+    // 제곱근 확인 Math.sqrt(n) : 제곱근 값을 계산해주는 함수 / 제곱이 음수면 NaN 반환
+    // Number.isInteger() : 정수확인 (정수면 true, 아니면 false) 
+
+
+    // 다른사람의 풀이
+    function nextSqaure(n) {
+        var result = 0;
+        var n = Math.sqrt(n);
+        result = Number.isInteger(n) ? Math.pow(n + 1, 2) : 'no';
+        return result;
+    }
+    // Math.pow() :  거듭제곱 값을 계산해주는 함수
+    // Math.pow([대상 숫자], [거듭제곱 횟수]);
+    // 제곱이 아니라면 -1 를 리턴인데 왜 다들 'no'를 리턴할까 ???
+</script>
+</body>
+</html>
