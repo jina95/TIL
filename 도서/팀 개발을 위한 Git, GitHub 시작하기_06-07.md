@@ -223,3 +223,132 @@ $ git log --oneline     # 첫번째, 두번째 커밋 확인 가능
 $ cat file1.md     # 클론, 기존 내용이 합쳐진 것을 확인할 수 있다.
 </code></pre>
 
+
+  
+
+## CHAPTER 7 : 브랜치 생성 및 조작하기
+
+  
+
+**🖊01. CLI로 브랜치 생성하기**
+
+ - 커밋을 하면 커밋 객체가 생긴다. 커밋 객체에는 부모 커밋에 대한 참조와 실제 커밋을 구성하는 파일 객체가 들어있다.
+ - 브랜치는 논리적으로는 어떤 커밋과 그 조상들을 묶어서 뜻하지만, 사실은 단순히 커밋 객체를 가리킬 뿐이다.
+ 
+ **브랜치는 언제 사용 되는가?**
+ 
+ - 새로운 기능 추가
+ - 버그수정 ( ex hotFix, bugFix )
+ - 병합과 리베이스 테스트
+ - 이전코드 개선
+ - 특정 커밋으로 돌아가고 싶을때  
+
+**브랜치 생성하기**
+|명령어 | 설명  |
+|--|--|
+| git branch -v | 로컬저장소의 브랜치 목록을 보는 명령, -v를 입력하면 마지막 커밋도 함께 표시, 표시된 브랜치 중에서 이름 왼쪽에 *가 붙어있으면 HEAD 브랜치 |
+| git branch -f 브랜치이름 커밋체크섬 | 새로운 브랜치 생성, 커밋체크섬값을 주지 않으면 HEAD로 부터 생성, 이미 있는 브랜치를 다른 커밋으로 옮기고 싶을때는 옵션 -f를 줘야 함 |
+| git branch -r v | 원격저장소에 있는 브랜치를 보고싶을 때 사용, -v 옵션을 추가하여 커밋 요약도 볼 수 있음 |
+| git checkout 브랜치이름 | 특정 브랜치로 체크아웃때 사용, 브랜치 이름대신 커밋체크섬을 쓸수 있지만 브랜치이름을 사용하는것을 강력히 권장함 |
+| git checkout -b 브랜치이름 커밋체크섬 | 특정 커밋에서 브랜치를 생성하고 동시에 체크아웃까지 함, 두 명령어를 하나로 합쳤기 때문에 자주 사용 |
+| git merge 대상 브랜치 | 현재 브랜치와 대상 브랜치를 병합할때 사용, 병합 커밋이 새로생기는 경우가 많음 | 
+| git rebase 대상 브랜치 | 내 브랜치의 커밋들을 대상 브랜치에 재배치 시킴, 히스토리가 깔끔해져서 자주 사용하지만 주의 필요 |
+| git branch -d 브랜치이름 | 특정 브랜치를 삭제할때사용, HEAD 브랜치나 병합하지 않은 브랜치는 삭제할 수 없음 | 
+| git branch -D 브랜치이름 | 브랜치 강제삭제 명령어, -d 로 지울수 없는 브랜치를 지우는데 주의 필요 | 
+| git tag -a -m 간단한메세지 태그이름 브랜치또는체크섬 | -a 로 주석이 있는 태그를 생성, 메세지와 태그이름은 필수이며 브랜치 생략하면 HEAD에 태그 생성 |
+| git push 원격저장소별명 태그이름 | 원격저장소에 태그를 업로드 |
+
+**브랜치 만들기**
+<pre><code> $ git log --oneline     # 커밋 로그 보기
+$ git branch     # 현재 브랜치 확인 
+$ git branch mybranch1     # 새로운 브랜치 생성
+$ git branch     # 현재 브랜치 확인
+$ git branch --oneline --all     # 변경된 브랜치 확인 </code></pre>
+
+ - *master 이라는 의미는 HEAD -> master 와 동일한 의미 
+
+**HEAD에 대해 반드시 기억할 점**
+
+ 1. HEAD는 현재 작업중인 브랜치를 가리킴
+ 2. 브랜치는 커밋을 가리키기 때문에 HEAD도 커밋을 가리킴
+ 3. 결국 HEAD는 현재 작업중인 브랜치의 최근 커밋을 가리킴
+
+- **revert를 이용해 커밋을 되돌릴 경우는 최신 커밋부터 취소해주는것이 좋다 ex C1 <- F1 <- C2 <- F2 <- C3 (master)
+
+<pre><code>$ git revert F2
+$ git revert F1 </code></pre>
+
+
+**🖊02. CLI로 checkout 하기**
+
+- checkout  명령은 브랜치의 내용을 워킹트리에 반영할때 사용. 정확히는 브랜치가 가르키는 커밋의 내용을 워킹트리에 반영
+
+**브랜치 만들기**
+<pre><code>$ git checkout mybranch1     # 브랜치 체크아웃
+$ git branch     # 현재 브랜치 확인
+$ git log --oneline --all     # HEAD 변경 확인
+$ cat file1.md     # 파일 내용 확인
+$ echo "third - my branch" >> file1.md     # 파일에 내용추가
+$ cat file1.md     # 파일 내용 확인
+$ git status      # 스테이지 상태 확인
+$ git add file1.md     # 스테이지에 변경사항 추가
+$ git commit      # 커밋
+$ git log --oneline --all     # 변경된 브랜치 확인 </code></pre>
+
+**커밋 후 빨리감기 병합**
+<pre><code>## mybranch1 에 새로운 커밋을 추가해주고
+$ git checkout master    # 마스터 브랜치 체크아웃
+$ cat file1.md     # 파일이 이전으로 돌아갔는지 확인
+$ git merge mybranch1      # 병합, fast-forward
+$ git log --oneline --all --graph    # 로그 확인
+$ cat file1.md     # 파일 상태 재확인 </code></pre>
+
+- 이번 병합은 작업의 흐름이 하나였기 때문에 빨리감기(fast-forward)병합으로 완료
+
+**reset --hard 로 브랜치 되돌리기**
+- reset 은 현재브랜치를 특정 커밋을 되돌릴때 사용
+- git reset --hard 이동할 커밋체크섬: 현재 브랜치를 지정한 커밋으로 옮긴 후 해당 커밋의 내용을 작업폴더에도 반영
+- 커밋체크섬은 git log 를 통해 확인 가능, 그러나 번거롭기 때문에 HEAD~ || HEAD^ 로 시작하는 약칭 사용 가능!
+
+**HEAD~, HEAD^**
+|  |  |
+|--|--|
+| HEAD~숫자 | HEAD~는 헤드의 부모 커밋, HEAD~2 는 헤드의 할아버지 커밋을 말한다. HEAD~n 은 헤드의 n 번째 위쪽 조상이라는 뜻 |
+| HEAD^숫자 | HEAD^는 똑같은 부모 커밋, 반면 HEAD^2 는 두번째 부모 커밋을 가리킴. 병합커밋처럼 부모가 둘 이상의 커밋에서만 의미있음. |
+
+**현재브랜치를 두 단계 이전을 되돌리기**
+<pre><code>$ git reset --hard --HEAD~2   # 브랜치 되돌리기
+$ git log --oneline --all   #  로그 확인</code></pre>
+
+- 위에서 사용한 reset은 hard reset
+
+**빨리감기 병합 상황에서 rebase 해보기**
+- git rebase 대상브랜치 : 현재 브랜치에만 있는 새로운 커밋을 대상 브랜치 위로 재배치 시킴. 빨리감기 병합이 가능한 경우에는 rebase 명령을 수행하면 빨리감기병합을 한다. 
+
+**rebase, push, branch 제거**
+<pre><code>$ git checkout mybranch1    # 브랜치 변경
+$ git rebase master     # rebase 시도
+- current branch mybranch1 is up to date.
+$ git log --oneline --all     # 로그 확인, 변한게 없다.
+$ git checkout master     # 다시 master 브랜치 체크아웃
+$ git rebase mybranch1     # 반대방향에서 rebase
+$ git log --oneline --all     # 변경사항을 확인해보면 빨리감기 병합이 되었다.
+$ git push     # push
+$ git branch -d mybranch1     # 브랜치 삭제
+$ git log --oneline --all -n2     # 로그 확인 </code></pre>
+
+**tag 작성**
+<pre><code>$ git log --oneline    # 로그 확인
+$ git tag -a -m "첫번째태그생성" v0.1     # 주석있는 태그 작성
+$ git log --oneline     # 태그생성확인
+$ git push origin v0.1     # 태그 푸시</code></pre>
+
+
+
+**🖊03. CLI로 3-way 병합하기**
+
+
+
+
+
+ 
