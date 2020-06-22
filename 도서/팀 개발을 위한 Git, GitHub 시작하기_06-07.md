@@ -347,6 +347,128 @@ $ git push origin v0.1     # 태그 푸시</code></pre>
 
 **🖊03. CLI로 3-way 병합하기**
 
+ - 긴급한 버그 처리 시나리오
+ 1.  오류가 없는 버전(주로 tag가 있는 커밋)으로 롤백
+ 2. master브랜치로부터 hotfix 브랜치 생성
+ 3. 빠르게 소스 코드 수정 / 테스트 완료
+ 4. master 브랜치로 병합 (fast-forward) 및 배포
+ 5. 개발중인 브랜치에도 병합(충돌가능성 높음)
+
+ **새로운 브랜치 및 커밋 생성**
+<pre><code>$ git checkout master    # master 로 체크아웃
+$ git checkout -b feature1    # feature1 브랜치 생성 및 체크아웃
+$ echo "기능 1 추가" >> file1.md      # 파일내용수정
+$ git add file1.md     # 스테이징
+$ git commit     # 커밋
+$ git log --oneline --graph --all --n2     # 로그확인</code></pre>
+
+**hotfix 브랜치생성 및 커밋, master에 병합**
+<pre><code>$ git checkout -b hotfix master     # master 로 부터 hotfix 브랜치 생성, 체크아웃
+$ git log --oneline --all --n2     # 2개의 커밋 로그만 보기
+$ echo "som hot fix" >> file1.md
+$ git add file1.md
+$ git commit 
+$ git log --oneline -n1
+$ git checkout master 
+$ git merger hotfix     # 빨리감기 병합
+$ git push     # 원격저장소로 push </code></pre>
+
+- 이제 feature1 브랜치에도 병합을 해야하는데, feature1 과 master는 다른분기로 진행되고 있기 때문에 이경우에는 빨리감기 병합이 불가능 하다. > 이럴때는 3-way 병합!
+
+**병합 및 충돌해결하기1**
+<pre><code>$ git checkout feature1     # feature1로 체크아웃
+$ git log --oneline --all
+$ git merge master     # master와 병합을 시도하지만 실패한다.
+$ git status     # 실패 원인 파악 </code></pre>
+
+- 이렇게 됬을때 결과메세지에서 볼 수있는 것 처럼 git merge --abort 명령을 통해 merge를 취소할수도있다.
+- 이때 vscode를 들어가면 충돌부분을 확인할 수 있다!
+
+**병합 및 충돌해결하기2**
+<pre><code>$ cat file1.md     # 최종 변경내용 확인
+$ git add file1.md     # 스테이징
+$ git status
+$ git commit 
+$ git log --oneline --all --graph -n4 </code></pre>
+
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/3way%EB%B3%91%ED%95%A9.png" width="80%">
+
+**🖊04. CLI로 rebase 해보기**
+
+- 3-way 병합을 하면 병합 커밋이 생성되기 때문에 다소 지저분해지는데, 이때 트리를 깔끔하게 하고 싶다면 rebase를 사용할 수 있다!
+- rebase === 재배치 (브랜치의 커밋들을 재배치 한다)
+- **원격에 푸시한 브랜치를 rebase 할때는 조심해야한다. 여러 Git 가이드에서는 원격저장소에 존재하는 브랜치에 대해서는 rebase를 하지말 것 이라고 권하고 있음. ( rebase 전과 후의 커밋체크섬이 다름, 즉 이전의 커밋과 다른 커밋임)**
+
+**reset --hard 및 rebase 시도**
+<pre><code> ## feature1 브랜치로 전환
+$ git reset --hard HEAD~    # 현재 브랜치를 한단계 되돌린다.(병합 커밋 사라짐)
+$ git log --oneline --graph --all -n3
+$ git rebase master     # HEAD 브랜치의 커밋들을 master 로 재배치
+$ git push     # 원격에 push </code></pre>
+
+- 하지만 위에와 같이 하면 에러가 뜬다.
+ - 병합 전으로 돌아가기 때문에 충돌로 rebase에 실패하는데, 수동으로 충돌을 해결한 뒤 스테이지에 추가할 것을 알려줌. 
+ - 이후 git rebase --continue 명령을 수행할 것도 알려줌.
+
+**충돌 해결 및 rebase 이어서 하기**
+<pre><code>$ git status     # 충돌 대상 확인 및 수동으로 충돌 해결 (vscode 이용)
+$ git add file1.md     # 변경사항 스테이징 및 상태 확인
+$ git status
+$ git rebase --continue     # 리베이스 계속 진행
+$ git log --oneline --graph --all -n2     
+$ git checkout master 
+$ git merger feature1     # 빨리감기 병합 </code></pre>
+
+- merge 는 마지막 단계에서 $ git commit 을 이용하지만, rebase 는 $ git rebase --continue 명령어를 사용!!!
+
+**3-way병합**
+- 머지커밋생성한다. 한번만 충돌 발생한다는 장점이 있지만 트리가 지저분해진다는 단점이 있다.
+
+**rebase**
+- 현재커밋을 수정하면서 대상 브랜치 위로 재배치한다. 깔끔한 히스토리가 되는 장점이 있지만 여러번 충돌이 발생할 수도 있다.
+
+**유용한 rebase의 사용법 : 뻗어나온 가지 없애기**
+
+**보통 커밋 만들기**
+<pre><code>$ echo "master1" > master1.md  
+$ git add master1.md
+$ git commit -m "master 커밋 1"
+$ git push origin/master 
+$ git log --oneline -n1 </code></pre>
+
+**가지 커밋 만들기**
+<pre><code>$ git reset --hard HEAD~     # HEAD를 한단계 되돌리기 
+$ echo "master2" > master2.md
+$ git commit -m "master 커밋 2"
+$ git log --oneline --graph -n3 </code></pre>
+
+**git pull 수행결과**
+<pre><code>$ git pull     # git pull 수행
+$ git log --oneline --graph --all -n4     # 병합커밋생성확인 </code></pre>
+
+**rebase로 가지 없애기**
+<pre><code>$ git reset --hard HEAD~ 
+$ git rebase origin/master     # rebase 수행으로 현재 커밋 재배치
+$ git log --oneline --all  --graph -n3  
+$ git push </code></pre>
+
+**임시브랜치 사용하기**
+- 원래 작업하려고 했던 브랜치의 커밋으로 임시브랜치를 만들고 나면 해당 브랜치에서는 아무작업이나 막 해도 상관 없다!
+- 이후 그 브랜치를 삭제하기만 하면 원상복구 되기 때문이다.
+- 브랜치가 필요 없어지는 시점에서  $ git branch -D 브랜치이름  명령으로 삭제 가능하다.
+
+**임시 브랜치 생성 사용 및 삭제**
+<pre><code>$ git branch test feature1     # feature1 브랜치에서 임시 브랜치 생성
+$ git checkout test
+$ echo "아무말대잔치" > test.md
+$ git add .
+$ git commit -m "임시 커밋"     # 새로운 커밋 생성
+$ git log --oneline --graph --all -n4
+$ git checkout master
+$ git branch -D test     # 임시브랜치 삭제
+$ git log --oneline --graph --all -n3 </code></pre>
+
+
 
 
 
