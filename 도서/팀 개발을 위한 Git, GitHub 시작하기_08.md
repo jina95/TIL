@@ -1,7 +1,5 @@
----
-
-
----
+# 팀 개발을 위한 Git, GitHub 시작하기
+<hr/>
 
 <h2 id="chapter-8--git-내부-동작-원리">CHAPTER 8 : Git 내부 동작 원리</h2>
 <p><strong>🖊01. git add 명령의 동작 원리</strong></p>
@@ -111,5 +109,7 @@ $ git cat-file blob ff5bda     # 해당 객체의 내용 들여다 보기 </code
 <li>$ git cat-file &lt;객체타입&gt; &lt;체크섬&gt; 명령어로 객체의 내용을 들여다 본다. ( 해당 파일의 내용을 표시해 줌)</li>
 </ul>
 <p><em><strong>git add 명령이 워킹트리에 존재하는 파일을 status 에 추가하는데, 해당 파일의 체크섬 값과 동일한 이름을 가지는 blob 객체가 생성되고 이 객체는 .git/objects 파일에 저장된다. 그리고 스테이지의 내용은 .git/index에 기록된다!!!</strong></em></p>
+
+
 <p><strong>🖊02. git commit 명령의 동작 원리</strong></p>
 
