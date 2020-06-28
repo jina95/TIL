@@ -113,3 +113,44 @@ $ git cat-file blob ff5bda     # 해당 객체의 내용 들여다 보기 </code
 
 <p><strong>🖊02. git commit 명령의 동작 원리</strong></p>
 
+**커밋상태 확인**
+
+<pre><code>$ git commit
+$ git log
+$ git status      # clean 한 상태인것을 알 수 있다
+$ ls -a .git/objects     # .git/objects/ 변화 확인
+$ ls -a .git/objects/42     # 42b5fe 오브젝트 존재 확인
+$ git show 42b5fe     # 42b5fe 오브젝트의 정채는 ? </code></pre>
+
+- 방금 만든 커밋은 .git/objects/42 아래에 있다.
+- $ git show 명령어를 통해 42b5fe 객체가 커밋인 것을 알 수 있다.
+
+**스테이지확인**
+<pre><code>$ git ls-files --stage     # 스테이지가 비어있지 않다!!
+$ git status </code></pre>
+
+- git status 명령은 워킹트리, 스테이지, HEAD 커밋 세 저장공간을 비교한다고 했는데 사실 clean 하다는 말의 뜻은 **워킹트리와 스테이지, 그리고 HEAD 커밋의 내용이 모두 똑같다** 라는 뜻이다.
+
+**수상한 객체 확인**
+<pre><code>$ ls -a .git/objects
+$ ls -a .git/objects/76/      # object 폴더 내용확인
+$ git show 76f6787     # 76f6787 객체는 무엇인가?
+$ git ls-tree 76f6787     # 트리 객체의 내용은?
+$ git ls-files --stage     # 스테이지도 확인
+$ git log --oneline -n1     # 커밋 체크섬 확인
+$ git cat-file -t 42b5fed     # 커밋 객체 타입 확인
+$ git cat-file commit 42b5fed     # 커밋 객체 내용 확인 </code></pre>
+
+> 책에서는 모두가 7a 일거라고 했는데 나는 76 이었다...
+- $ git show 명령어를 통해 tree 임을 확인.  tree 객체 내용을 확인해 봤을 때 내용이 스테이지와 동일.
+- 커밋 객체의 체크섬을 이용해 타입을 확인해 보면 commit 임을 알 수 있다
+- 이 커밋객체의 내용에는 커밋메세지와 트리 객체로 구성 되어 있음을 알 수 있고, 트리 객체의 체크섬은 위에 $ ls -a .git/objects/76/ 에서 확인한 내용과 같다.
+
+**위의 내용 요약**
+1. 커밋을 하면 스테이지의 객체로 트리가 만들어 진다.
+2. 커밋에는 커밋메세지와 트리객체가 포함된다.
+
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/%EC%BB%A4%EB%B0%8B%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8.png"  width="70%">
+
+
+**🖊03. 수동 커밋하며 살펴보기**
