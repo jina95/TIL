@@ -3,7 +3,7 @@
 
 <h2 id="chapter-8--git-내부-동작-원리">CHAPTER 8 : Git 내부 동작 원리</h2>
 <p><strong>🖊01. git add 명령의 동작 원리</strong></p>
-<p>**git-test 폴더 생성 후 로컬저장소 생성 **</p>
+<p><strong>git-test 폴더 생성 후 로컬저장소 생성</strong></p>
 <pre><code>$ pwd     # 현재폴더
 $ mkdir git-test    # 빈 폴더 생성
 $ cd git-test 
@@ -25,7 +25,7 @@ $ ls -al .git/     # .git 폴더 내부 확인 </code></pre>
 <tbody>
 <tr>
 <td>-rw-r–r-1</td>
-<td>첫번째 칸은 파일의 권한과 상태, 크게 중요하지 X. '-'로 시작하면 일반파일, 'd’로 시작하면 폴더</td>
+<td>첫번째 칸은 파일의 권한과 상태, 크게 중요하지 X. '-'로 시작하면 일반파일, 'd’로 시작하면 폴더</td>
 </tr>
 <tr>
 <td>cat-hanbit</td>
