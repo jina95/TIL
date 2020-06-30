@@ -292,3 +292,64 @@ $ git status     #  다시 상태 확인</code></pre>
 ## CHAPTER 9 : 인증 기능 살펴보기
 
 **🖊01. 인증 관련 기능 사용하기**
+
+### 윈도우
+**윈도우의 자격증명 관리_credential.helper 변수 값 사용해보기**
+<pre><code>$ git config crendential.helper
+manager
+$ git config --local crendential.helper
+$ git config --global crendential.helper
+$ git config --system crendential.helper
+manager </code></pre>
+
+- credential.helper 값이 manager 로 되어있을 경우 [windows 자격증명]에 GitHub 아이디와 패스워드가 저장된다.
+- 먼저 새로운 로그인창을 띄우려면 기존의 자격증명을 제거해야 한다. 하나는 소스트리의 [도구-옵션-인증]에서 사용자 계정 정보 옆의 v모양을 누른뒤 삭제하는 것과 자격증명관리에서 해당계정의 v버튼을 누른 후 제거 버튼을 눌러 계정을 삭제하는 것이다.
+
+**계정정보가 없는상태에서 git push 실행**
+<pre><code>$ git push     # GitHub 로그인창이 나타남</code></pre>
+
+### 맥
+**맥에서 인증관련 사용자 옵션_mac에서 git 인증관리**
+<pre><code>$ git config --local credential.helper 
+$ git config --global credential.helper
+$ git config --system credential.helper
+osxkeychain </code></pre>
+
+- 맥에서는 osxkeychain 이 git 의 인증관리에도 사용되고 있음을 알 수 있다.
+- osxkeychain 을 이용할 경우 키체인접근 이라는 앱이나 소스트리를 이용해서 인증정보를 관리할 수 있다.
+
+**리눅스 인증 옵션 확인해보기**
+<pre><code>$ git config --local credential.helper 
+$ git config --global credential.helper
+$ git config --system credential.helper </code></pre>
+
+- credential.helper 에 아무것도 지정되어있지 않으면, 매번 사용자 아이디와 패스워드를 물어보게된다. 이를 위해 cache 옵션,  store 옵션을 이용한다.
+
+**credential.helper 값을 cache로 지정**
+<pre><code>$ git config credential.helper "cache --timeout=30"     # 30초간 아이디와 패스워드를 저장
+$ git push     # 최초 1회 패스워드와 아이디 입력
+$ git push     # 다시 입력해보면 ID가 저장되어 있음
+$ gut push     # 30 초 지나서 다시 시도</code></pre>
+
+- cache 옵션을 이용하면 cache 인증모드가 되는데 이 경우 지정한 시간만큼 사용자 아이디와 패스워드를 임시로 저장한다.
+
+**credential.helper 값을 store로 지정**
+<pre><code>$ git config credential.helper stroe     # 인증방식 store 로 변경
+$ git push      # 처음입력한 id/pw 저장함
+$ git push    # 이후로는 id/pw 를 물어보지 않음 </code></pre> 
+
+- store 은 편리하지만, 홈 폴더에 .git-credentials라는 파일이 저장된다.(사용자의 아이디와 패스워드가)
+- 따라서 패스워드의 노출이 꺼려진다면 store 옵션을 사용하지 않는것이 좋다.
+
+**git 인증 초기화**
+<pre><code>$ git config --unset credential.helper      # 옵션 삭제
+$ file ~/.git-credentials     # 인증파일 정보확인
+$ rm ~/.git-credentials     # 인증파일 삭제</code></pre>
+
+- credential.helper 옵션을 삭제한뒤, 여전히 파일이 남아있었기 때문에 rm 으로 완전히 삭제
+- store옵션을 사용하지 않는다면 잊지말고 꼭 파일을 삭제해 주어야 한다.
+
+
+**🖊02. SSH 키 생성 및 사용하기**
+**SSH란?**
+- SSH 프로토콜은 1995년에 개발. 
