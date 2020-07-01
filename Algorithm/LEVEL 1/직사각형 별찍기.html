@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>코딩테스트 알고리즘 연습 문제</title>
+</head>
+<body>
+    <h1>직사각형 별찍기</h1>
+    <em>문제 설명 </em>
+    <p>
+        이 문제에는 표준 입력으로 두 개의 정수 n과 m이 주어집니다.
+        별(*) 문자를 이용해 가로의 길이가 n, 세로의 길이가 m인 직사각형 형태를 출력해보세요.
+    </p>
+    <h3>제한 조건</h3>
+    <ul>
+        <li>n과 m은 각각 1000 이하인 자연수입니다.</li>
+    </ul>
+<script>
+    // 처음으로 풀었던 방식
+    process.stdin.setEncoding('utf8');
+    process.stdin.on('data', data => {
+        const n = data.split(" ");
+        for(let i = 0; i < n[1]; i++ ){
+            console.log("*".repeat(n[0]))
+        }
+    });
+    // 단순하게 생각해서 그런지 1점 받았다...흠...
+
+    // 다른사람의 풀이
+    process.stdin.setEncoding('utf8');
+    process.stdin.on('data', data => {
+        const n = data.split(" ");
+        const a = Number(n[0]), b = Number(n[1]);
+        const star = `${'*'.repeat(a)}\n`;
+
+        console.log(star.repeat(b));
+    });
+
+    // Number(n[0]) 를 n[0] 으로 입력해도 가능하다! 
+    // \n 이 개행이라고 한다!
+    
+</script>
+</body>
+</html>
