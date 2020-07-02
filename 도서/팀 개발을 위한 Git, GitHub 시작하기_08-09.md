@@ -352,4 +352,71 @@ $ rm ~/.git-credentials     # 인증파일 삭제</code></pre>
 
 **🖊02. SSH 키 생성 및 사용하기**
 **SSH란?**
-- SSH 프로토콜은 1995년에 개발. 
+- SSH( Secure SHell )프로토콜은 1995년에 개발. 원래는  linux 나 unix 같은 OS에 안전하게 접속하기 위해 만들어짐.
+- 보안상에 문제점이 있었던 기존의 방식을 개선하기 위해서 만들어 졌고, 그래서 앞에  secure( 안전한 ) 이 붙는다.
+- 최근에는 클라우드등 리누스 서버에 접속하기 위해 주로 사용
+- 윈도우에서 사용하는 putty나 secure CRT 라는 프로그램들이 SSH 사용
+- git 에서도 SSH를 이용하여 데이터를 안전하게 주고받을 수 있음
+
+**SSH키 생성하기**
+<pre><code>$ ssh-keygen     # ssh-keygen 명령어를 사용해서 SSH key 생성
+# 엔터키 누름
+# 엔터키 두번 누름
+$ cd ~/.ssh/     # 키가 저장된 폴더로 이동
+$ pwd    
+$ ls      # 두개의 키파일 확인
+$ cat id_rsa.pub     # 공개키 확인, 내용을 메모장에 붙여놓는다. </code></pre>
+
+- 기존 https 방식과는 다른 방식으로 인증하게 된다. (기존에는 사용자 아이디와 패스워드로 사용자인증을 했음)
+- 공개키(자물쇠) / 비밀키(열쇠) 방식
+- 내 컴퓨터에 열쇠를 저장하고 GitHub에 자물쇠를 업로드 하면 열쇠와 자물쇠의 쌍을 이용해서 사용자 인증을 한다. **비밀키는 타인 또는 다른서비스등에 노출되면 안됨!!**
+- $ ssh-keygen 명령어로 공개키와 비밀키를 생성
+- 키가 저장되는 위치와 파일명, passpharse(비밀키 보호하기 위한 암호) 지정해야하는데 일단은 enter! 
+- $ls 로 두개의 키파일을 확인할 수 있는데, id_rsa.pub 파일이 공개키 / 확장자가 없는 id_rsa 파일이 비밀키
+
+**GitHub에 키 등록하기**
+- 우리가 생성한 키를 GitHub에 등록해야하는데, 자물쇠에 해당하는 공개키를 등록해야 한다.
+
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/%ED%82%A4%EB%93%B1%EB%A1%9D%ED%95%98%EA%B8%B0%20%EC%85%8B%ED%8C%85.png" width="20%">
+
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/newsshkey.png" width="80%">
+
+<img src="https://github.com/jina95/TIL/blob/master/images/%EB%8F%84%EC%84%9C/sshkeytitle.png" width="60%">
+
+- 타이틀에는 '내 컴퓨터 공개키' 같은 명확하게 표현.
+- 키에는 앞 단계에서 메모장에 붙여놓은 공개키의 내용을 붙여 넣는다.
+- Add SSH Key  클릭!
+
+**SSH를 이용해서 저장소 클론하기**
+- 사용자 계정에 있는 원격저장소 주소 복사
+- SSH 를 이용하려면, 이 주소에서 https://github.com/ 를 git@ 로 바꾸고 git@github.com: 으로 바꿔준다.
+
+<pre><code>HTTPS를 사용하는 원격저장소 주소 : https://github.com/jina95/TIL.git
+SSH를 사용하는 원격저장소 주소 : git@github.com:jina95/TIL.git </code></pre>
+
+**SSH로 원격저장소 클론하기 1**
+<pre><code>$ git clone git@github.com:jina95/TIL.git     # 슬프게도 실패 </code></pre>
+
+> 근데 나는.. 되었다는게 함정....
+
+**ssh 설정파일 만들기**
+<pre><code>$ echo "Host github.com" >> ~/.ssh/config </code></pre>
+
+- 위 명령으로 /.ssh/config 파일이 생성될 것.
+
+**ssh 설정파일 내용**
+<pre><code>Host github.com
+  Hostname github.com
+  IdentityFile ~/.ssh/id_rsa </code></pre>
+
+- 2~3 번째 줄에는 앞에 스페이스바 두칸 있음!
+- 저장 후에는 $ cat ~/.ssh/config 를 통해 올바른 경로에 맞는 내용으로 저장된 것인지 확인!
+- 설정파일의 내용은 github.com에서 사용자 식별을 위해 .ssh/id_rsa 파일을 사용하라는 뜻.
+
+**SSH를 이용해서 clone 및 push해보기**
+<pre><code>$ git clone git@github.com:jina95/TIL.git
+$ cd TIL/
+$ git push </code></pre>
+
+- SSH인증은 cache 에 저장하는 옵션에 비해 패스워드가 노출되지 않는 장점이 있기 때문에 종종 사용된다.
+- 혹시 비밀키가 외부에 노출됬다면, Github에 등록된 공개키를 삭제하고 새로운 공개키, 비밀키를 만들어서 사용하면 된다.
