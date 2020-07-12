@@ -34,63 +34,157 @@
     </ul>
 <script>
     // 예를 들어 확인할 숫자 || 글자
-    // let N = 5;
-    let N = 4;
-    // let stages = [2, 1, 2, 6, 2, 4, 3, 3]
-    let stages = [4, 4, 4, 4, 4]
+    let N = 5;
+    // let N = 4;
+    let stages = [2, 1, 2, 6, 2, 4, 3, 3]
+    // let stages = [4, 4, 4, 4, 4]
     
     console.log(solution(N, stages));
     
     // 처음으로 풀었던 방식
-    function solution(N, stages) {
-        stages = stages.sort(function(a,b){
-            return a - b
-        });
-        // let Maxvalue = Math.max.apply(null, stages)
+    // function solution(N, stages) {
+    //     stages = stages.sort(function(a,b){
+    //         return a - b
+    //     });
+    //     // let Maxvalue = Math.max.apply(null, stages)
         
-        const 정리 = stages.reduce((t, a) => { 
-            t[a] = (t[a] || 0) + 1 
-            return t 
-        }, {})
-        //  참고 
-        // https://fenderist.tistory.com/320
-
-        console.log(정리);
+    //     const 정리 = stages.reduce((t, a) => { 
+    //         t[a] = (t[a] || 0) + 1 
+    //         return t 
+    //     }, {})
+    //     //  참고 
+    //     // https://fenderist.tistory.com/320
+    //     // 스테이지1에 ~개가 있는지, 2에 ~개가 있는지 담는다.
         
-        let array = []
-        let stagesLength = stages.length
-        for (let i = 0; i <= N; i++) {
-            if( 정리[i] / stagesLength) {
-                array[i] = 정리[i] / stagesLength
-                stagesLength = stagesLength - 정리[i]
-            } else {
-                array[i] = 0
-            }
+    //     let array = []
+    //     let stagesLength = stages.length
+    //     for (let i = 0; i <= N; i++) {
+    //         if( 정리[i] / stagesLength) {
+    //             array[i] = 정리[i] / stagesLength
+    //             stagesLength = stagesLength - 정리[i]
+    //         } else {
+    //             array[i] = 0
+    //         }
             
-        }
-        array = Object.entries(array)
-        array.splice(0, 1)
-        array = array.sort(function (a, b) {
-            return b[1] - a[1]
-        });
-        console.log(array.length);
-        let arr = []
-        for (let i = 0; i < array.length; i++) {
-            arr[i] = []
-            arr[i] = array[i][0] * 1
-        }
-        console.log(arr);
+    //     }
+    //     console.log(array);
         
-    }
+    //     // 실패율 계산
+    //     array = Object.entries(array)
+    //     array.splice(0, 1)
+    //     // 0 층은 지우고
+    //     array = array.sort(function (a, b) {
+    //         return b[1] - a[1] 
+    //     });
+    //     // 실패율 내림차순으로 정렬
+    //     console.log(array.length);
+    //     let arr = []
+    //     for (let i = 0; i < array.length; i++) {
+    //         arr[i] = []
+    //         arr[i] = array[i][0] * 1
+    //     }
+    //     console.log(arr);
+        
+    // }
     // sort 로 stages 를 정렬한다. 오름차순으로! 
     // stages 에 0번째 1번째에 해당하는 숫자가 몇개가 있는지 array에 넣는다
     // 그리고 새로운 배열에서 실패율을 계산해서 넣는다..... 말이쉽지!!!!!
     // 48.1
     // 테스트 문제 3, 6, 7, 10, 11, 12, 13, 14, 16, 18, 19, 20, 21, 24
     // 반도 다 못맞춤... 이게 무슨일이지!!!!!!!!!
+    // 다시 좀 더 생각해 봐야겠다...
+
+
+    // 두번째 도전!
+    function solution(N, stages) {
+        stages = stages.sort(function (a, b) {
+            return a - b
+        });
+        // let Maxvalue = Math.max.apply(null, stages)
+
+        const 정리 = stages.reduce((t, a) => {
+            t[a] = (t[a] || 0) + 1
+            return t
+        }, {})
+        //  참고 
+        // https://fenderist.tistory.com/320
+        // 스테이지1에 ~개가 있는지, 2에 ~개가 있는지 담는다.
+        console.log(정리);
+        
+
+        let array = []
+        let stagesLength = stages.length
+        for (let i = 0; i <= N; i++) {
+            if (정리[i] / stagesLength) {
+                array.push({stageNum: i , percent: 정리[i] / stagesLength })
+                // array.push(정리[i] / stagesLength)
+                stagesLength = stagesLength - 정리[i]
+            } else {
+                array.push({ stageNum: i, percent: 0})
+            }
+
+        }
+        
+        // console.log(array);
+        // 실패율 계산
+
+        array.splice(0, 1)
+        // 0 층은 지우고
+        array = array.sort(function (a, b) {
+            return b.percent - a.percent
+            // b.percent === a.percent ? a.stageNum - b.stageNum : b.percent - a.percent
+            // console.log(a.stageNum);
+            
+        });
+        console.log(array);
+        
+        // 실패율 내림차순으로 정렬
+
+        console.log(array.length);
+        let arr = []
+        for (let i = 0; i < array.length; i++) {
+            arr[i] = []
+            arr[i] = array[i].stageNum * 1
+        }
+        console.log(arr);
+
+    }
+    // 이렇게 해도 안되는건 마찬가지...
+    // 실패값이 같을때 스테이지 별로 오름차순으로 정렬 하는게 안되는것 같은데..
+    // 테스트 문제정도로는 풀리는 상황이라.. 어떻게 더 예외처리를 해줘야할 지 모르겠다..
 
 
     // 다른사람의 풀이
+    function solution(N, stages) {
+        var answer = [];
+        var stack = [];
+        let users = stages.length;
+        //[] {stage, 실패율}
+        for (var i = 1; i <= N; i++) {
+            const len = stages.filter(value => value === i).length;
+            // 이부분에서 1층 ~명 /2층 ~명 / 이게 정리가 됨.
+            
+            if (len === 0) {
+                stack.push({ index: i, ratio: 0 });
+            } else {
+                stack.push({ index: i, ratio: (len / users) });
+                users -= len;
+            }
+        }
+
+        stack.sort((a, b) => {
+            if (b.ratio === a.ratio) {
+                return a.index - b.index;
+            }
+            else {
+                return b.ratio - a.ratio;
+            }
+        })
+
+        return stack.map(value => value.index);
+    }
+    // filter() 메서드는 주어진 함수의 테스트를 통과하는 모든 요소를 모아 새로운 배열로 반환합니다
+    // map() 메서드는 배열 내의 모든 요소 각각에 대하여 주어진 함수를 호출한 결과를 모아 새로운 배열을 반환합니다.
     
 </script>
 </body>
