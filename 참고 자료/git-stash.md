@@ -22,9 +22,9 @@ $ git stash -u # 새롭게 추가한 파일도 스테이시에 저장 </code></p
 
 <hr>
   
-### 🚲
+### 😈😈😈😈😈😈
 
-<img src="git stash list">
+<img src="https://github.com/jina95/TIL/blob/master/images/%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C/git%20stash%20list%20.png" width="80%">
 
   
 
@@ -37,7 +37,7 @@ $ git stash -u # 새롭게 추가한 파일도 스테이시에 저장 </code></p
   
 <hr>
 
-### 🚲
+### 😈😈😈😈😈😈
 
 - $ git stash -u >> stash 는 git add 로 한번 이라도 영역에 트래킹 된 파일만 저장 가능하기 때문에, 새로운 파일은 해당 명령어를 통해 저장해 줘야 한다.
 
