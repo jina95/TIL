@@ -1,8 +1,3 @@
----
-
-
----
-
 <h1 id="💡협업프로젝트-pull--push">💡협업프로젝트 pull &amp; push</h1>
 <blockquote>
 <p>내가 정리한 사이트를 기반으로 함 : <a href="https://github.com/jina95/TIL/blob/master/project/moneyboo_202006-08/5st_0719.md">https://github.com/jina95/TIL/blob/master/project/moneyboo_202006-08/5st_0719.md</a></p>
@@ -22,6 +17,10 @@
 <li>해당 브랜치에서 pull 을 받아온다, <strong>$ git pull upstream 브랜치이름(ex develop)</strong></li>
 <li>이후 기존 push 한 브랜치를 삭제하거나 ( <strong>$ git branch -d feature/jina</strong>), 프로젝트 규칙에 맞게 하면 끝~!</li>
 </ol>
+
+> 간단하게 생각한다면, origin 은 내 저장소 / upstream 은 상대 포크한 원본저장소 라고 생각하면 된다! 
+
+
 <hr>
 <h3 id="😈😈😈😈😈">😈😈😈😈😈</h3>
 <ul>
@@ -30,3 +29,6 @@
 </ul>
 <hr>
 
+- 참고 사이트 : [https://wayhome25.github.io/git/2017/07/08/git-first-pull-request-story/](https://wayhome25.github.io/git/2017/07/08/git-first-pull-request-story/)
+
+- 참고 사이트 : [https://playinlion.tistory.com/29](https://playinlion.tistory.com/29)
