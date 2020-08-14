@@ -1,8 +1,3 @@
----
-
-
----
-
 <h1 id="💡netlify로-배포하기">💡Netlify로 배포하기</h1>
 <ul>
 <li>git hub repository 를 선택한 후,</li>
@@ -30,7 +25,9 @@
 <ul>
 <li>해당 파일에 위의 내용을 추가해 준다.</li>
 </ul>
-<p>&lt; hr&gt;</p>
+
+<hr>
+
 <ul>
 <li>참고 사이트 : <a href="https://13akstjq.github.io/react/2019/09/01/React-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-Netlify%EC%97%90-%EB%B0%B0%ED%8F%AC%ED%96%88%EC%9D%84%EB%95%8C-NotFound-%EC%9D%B4%EC%8A%88-%ED%95%B4%EA%B2%B0.html">https://13akstjq.github.io/react/2019/09/01/React-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-Netlify%EC%97%90-%EB%B0%B0%ED%8F%AC%ED%96%88%EC%9D%84%EB%95%8C-NotFound-%EC%9D%B4%EC%8A%88-%ED%95%B4%EA%B2%B0.html</a></li>
 <li>참고 사이트 : <a href="https://medium.com/@ishoshot/page-not-found-on-reload-vuejs-netlify-c71716e97e6">https://medium.com/@ishoshot/page-not-found-on-reload-vuejs-netlify-c71716e97e6</a></li>
