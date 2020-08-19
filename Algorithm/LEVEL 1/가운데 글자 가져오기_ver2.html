@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>코딩테스트 알고리즘 연습 문제</title>
+</head>
+
+<body>
+    <h1>가운데 글자 가져오기</h1>
+    <em>문제 설명 </em>
+    <p>
+        단어 s의 가운데 글자를 반환하는 함수, solution을 만들어 보세요. 단어의 길이가 짝수라면 가운데 두글자를 반환하면 됩니다.
+    </p>
+    <ul>
+        제한 조건
+        <li> s는 길이가 1 이상, 100이하인 스트링입니다.</li>
+    </ul>
+    <script>
+        const s = 'abcdef';
+
+        solution(s);
+
+        function solution(s) {
+            const floorNum = Math.floor(s.length / 2)
+            let answer = ''
+
+             s.length % 2 === 1 ? (answer = s.substr(floorNum, 1)) : (answer = s.substr(floorNum - 1, 2))
+             return answer
+        }
+
+        // 효율성 테스트가 있었더라면, 떨어졌을 것 같다...🤔
+        // 코드를 정리해보자 ! 
+
+        function solution(s) {
+            return s.substr(Math.ceil(s.length /2) - 1, s.length % 2 == 1 ? 1 : 2)
+        }
+
+        //  훨씬 깔끔해졌다 !! 
+        // Math.ceil() 소수점 올리기 / Math.floor() 소수점 버리기 / Math.round() 소수점 반올림
+    </script>
+</body>
+
+</html>
