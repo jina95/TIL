@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>코딩테스트 알고리즘 연습 문제</title>
+</head>
+
+<body>
+    <h1>나누어 떨어지는 숫자 배열</h1>
+    <em>문제 설명 </em>
+    <p>
+        array의 각 element 중 divisor로 나누어 떨어지는 값을 오름차순으로 정렬한 배열을 반환하는 함수, solution을 작성해주세요.
+        divisor로 나누어 떨어지는 element가 하나도 없다면 배열에 -1을 담아 반환하세요.
+    </p>
+    <ul>
+        제한 조건
+        <li>arr은 자연수를 담은 배열입니다.</li>
+        <li>정수 i, j에 대해 i ≠ j 이면 arr[i] ≠ arr[j] 입니다.</li>
+        <li>divisor는 자연수입니다.</li>
+        <li>array는 길이 1 이상인 배열입니다.</li>
+    </ul>
+    <script>
+        // 처음으로 풀었던 방식
+        let arr = [2, 36, 1, 3];
+        let divisor = 1;
+
+        solution(arr, divisor);
+
+        // function solution(arr, divisor) {
+        //     let array = arr
+        //     let answer = []
+
+        //     for (let i = 0; i < array.length; i++) {
+        //         if(array[i] % divisor === 0 ){
+        //             answer.push(array[i])
+        //         }
+        //     }
+
+        //     answer.sort((a,b) => {
+        //         return a - b
+        //     })
+
+        //     if(answer.length == 0 ) answer.push(-1)
+        //     return answer
+        // }
+
+        // 테스트 통과 , 좀 더 정리 해 보자 
+
+        function solution(arr, divisor) {
+            let answer = []
+
+            arr.sort((a, b) => {
+                return a - b
+            })
+
+            arr.map(a => {
+                a % divisor === 0 ? answer.push(a) : a
+            })
+
+            answer.length == 0 ? answer.push(-1) : answer
+            return answer
+        }
+
+        // 좀 더 깔끔하게 하고 싶었는데... 아쉽다 ! 
+
+        // 다른사람의 풀이
+        function solution(arr, divisor) {
+            var answer = arr.filter(v => v % divisor == 0);
+            return answer.length == 0 ? [-1] : answer.sort((a, b) => a - b);
+        }
+    </script>
+</body>
+
+</html>
