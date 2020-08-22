@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>코딩테스트 알고리즘 연습 문제</title>
+</head>
+<body>
+    <h1>두 정수 사이의 합</h1>
+    <em>문제 설명 </em>
+    <p>
+        두 정수 a, b가 주어졌을 때 a와 b 사이에 속한 모든 정수의 합을 리턴하는 함수, solution을 완성하세요.
+        예를 들어 a = 3, b = 5인 경우, 3 + 4 + 5 = 12이므로 12를 리턴합니다.
+    </p>
+    <ul> 
+        제한 조건
+        <li> a와 b가 같은 경우는 둘 중 아무 수나 리턴하세요. </li>
+        <li> a와 b는 -10,000,000 이상 10,000,000 이하인 정수입니다. </li>
+        <li> a와 b의 대소관계는 정해져있지 않습니다. </li>
+    </ul>
+<script>
+    // 처음으로 풀었던 방식
+    const a = 3
+    const b = 5
+
+    solution(a, b)
+    // function solution(a, b) {
+    //     let big = 0;
+    //     let small = 0;
+    //     let mm = 0;
+        
+    //     a >= b ? (big = a, small = b) : a !== b ? (big = b, small = a) : 0
+        
+    //     big - small === 0 ? mm = 0 : mm = big - small
+    //     let answer = small
+    //     let i = 1
+    //     if(mm === 0) return big 
+
+    //     while(small < big){
+    //         small++;
+    //         answer += small;
+    //     }
+
+    //     return answer 
+    // }
+    // 테스트 성공 ! 
+    // 코드를 좀 더 줄여 보자! 
+
+    function solution(a, b) {
+        let big = 0;
+        let small = 0;
+        let mm = 0;
+
+        a >= b ? (big = a, small = b) : (big = b, small = a) 
+
+        big - small === 0 ? mm = 0 : mm = big - small
+        if (mm === 0) return big
+
+        let answer = small
+        let i = 1
+
+        while (small < big) {
+            small++;
+            answer += small;
+        }
+
+        return answer
+    }
+    // 어떻게 더 줄여야 할 지 모르겠다 🤔
+
+    // 다른사람 풀이
+     function adder(a, b) {
+        var result = 0
+        return (a + b) * (Math.abs(b - a) + 1) / 2;
+    }
+    // 전에 처음으로 풀었을때, 이 풀이를 본적이 있는데, 바로 떠오르지 않았음 ... 수학적으로 더 공부를 해야할 것 같다..🥶
+
+</script>
+</body>
+</html>
