@@ -147,7 +147,7 @@ import Child from  './Child.svelte'
 #### 2 - 2. $ 문법
 - vue에서 computed와 watch를 합쳐놓은 문법이라고 생각하면 이해하기 쉬움!
 
-<img src="svelte_$문법">
+<img src="https://github.com/jina95/TIL/blob/master/images/svelte/svelte_%24%EB%AC%B8%EB%B2%95.png" width="80%">
 
 - [label](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/label)
 
@@ -155,4 +155,4 @@ import Child from  './Child.svelte'
 - 반응형 문법을 사용할때 주의해야할 두가지 !
 - [reduce](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 
-<img src="svelte_주의해야할것들">
+<img src="https://github.com/jina95/TIL/blob/master/images/svelte/svelte_%EC%A3%BC%EC%9D%98%ED%95%B4%EC%95%BC%ED%95%A0%EA%B2%83%EB%93%A4.png" width="80%">
