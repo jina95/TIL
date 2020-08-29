@@ -35,16 +35,16 @@ $ npm run dev</code></pre>
 	1. Rollup 프로젝트 
     
 <pre><code>$ npx degit sveltejs/template 프로젝트이름
-	$ cd 생성프로젝트
-	$ npm i
-	$ npm run dev</code></pre>
+$ cd 생성프로젝트
+$ npm i
+$ npm run dev</code></pre>
 
 	2. Webpack 프로젝트  
 
 <pre><code>$ npx degit sveltejs/template-webpack 프로젝트이름
-	$ cd 생성프로젝트
-	$ npm i
-	$ npm run dev</code></pre>
+$ cd 생성프로젝트
+$ npm i
+$ npm run dev</code></pre>
 
 > Rollup 의 경우 localhost 5000 이지만, Webpack의 경우는 localhost 8080 
 
@@ -70,9 +70,11 @@ let  name  =  "JJ"
 	"*.svelte": "html"
 }, </code></pre>
 
+- 참고 사이트 : [편집기 설정](https://svelte.dev/blog/setting-up-your-editor)
+
 #### 1 - 2. 속성 정의
 
-<img src="svelte_속성정의">
+<img src="https://github.com/jina95/TIL/blob/master/images/svelte/svelte_%EC%86%8D%EC%84%B1%EC%A0%95%EC%9D%98.png" width="80%">
 
 #### 1 - 3. 스타일 정의
 
@@ -91,7 +93,7 @@ let  name  =  "JJ"
 
 - .active 로 스타일을 줄때 개발자도구로 보면 해쉬태그(?)값이 붙는것을 확인 할 수 있다.
 
-<img src="svelte_스타일정의_해쉬태그"
+<img src="https://github.com/jina95/TIL/blob/master/images/svelte/svelte_%EC%8A%A4%ED%83%80%EC%9D%BC%EC%A0%95%EC%9D%98_%ED%95%B4%EC%89%AC%ED%83%9C%EA%B7%B8.png" width="30%">
 
 - svelte에서는 기본적으로 해당 컴포넌트 안에서만 적용되는 스타일로 적용되기 때문/ 이때 글로벌 기능을 사용하여 전역으로 사용 할 수 있다 ( ex :global(😀))
 
