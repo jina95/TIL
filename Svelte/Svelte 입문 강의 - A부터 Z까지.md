@@ -1,5 +1,6 @@
-# Svelte 입문 강의 - A부터 Z까지 💻
+# Svelte 입문 강의 - A부터 Z까지 💻 
 
+## 1️⃣
 ### 🖥 svelte 소개
 #### 0 - 2. Svelte 특징
 - 다른 프레임 워크에 비해 더 적은양의 코드로 같은 동작을 구현할 수 있다.
@@ -120,4 +121,38 @@ import Child from  './Child.svelte'
 ```
 
 ### 🖥 반응형을 위한 문법
-#### 2 - 1. 
+#### 2 - 1. 이벤트 리스너
+
+```javascript
+<script>
+	let count = 0;
+
+	function handleClick() {
+		count ++;
+	}
+	function handleMouseDown(){
+		console.log('down!');
+		
+	}
+</script>
+
+<button 
+	on:click={handleClick}
+	on:mousedown={handleMouseDown}
+	>
+	Clicked {count}
+</button>
+```
+
+#### 2 - 2. $ 문법
+- vue에서 computed와 watch를 합쳐놓은 문법이라고 생각하면 이해하기 쉬움!
+
+<img src="svelte_$문법">
+
+- [label](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/label)
+
+#### 2 - 3. 주의해야할 것들
+- 반응형 문법을 사용할때 주의해야할 두가지 !
+- [reduce](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+
+<img src="svelte_주의해야할것들">
