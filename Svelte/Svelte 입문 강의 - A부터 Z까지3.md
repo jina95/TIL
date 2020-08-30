@@ -59,7 +59,7 @@
 
 - 위의 코드는 아래와 같이 구현 된다.
 
-<img src="svelte_input 태그" width="50%">
+<img src="https://github.com/jina95/TIL/blob/master/images/svelte/svelte_input%20%ED%83%9C%EA%B7%B8.png" width="50%">
 
 
 #### 6 - 2. textarea 태그
