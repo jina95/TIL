@@ -200,5 +200,119 @@ Food.propTypes = {
 
 ### 🖥 STATE - 3
 #### 3 - 0. Class Components and State
+- 동적인 데이터 이용을 위해서는 props -> state
+- function component -> class component
 
+```javascript
+// 기존 src/App.js
+function App() {
+  return (
+    <div>
+        // ...
+    </div>
+  );
+}
+
+//아래와 같은 형식으로 바꿔준다.
+class App extends React.Component{
+    render(){
+        return <div>
+            // ...
+        </div>
+    }
+}
+```
+
+- class component 는 return 을 가지지 않고 render method를 가지고 있다.
+- class component 는 class 이지만, React.Component 로부터 확장되고 screen에 그려진다.
+- react 는 자동적으로 class component 의 render method를 실행하고자 한다.
+
+```javascript
+class App extends React.Component{
+  // state 는 object 
+  // component 에 data를 넣을 공간이 있고, 그 data는 변한다. ( 바꿀데이터는 state 안에 넣는다.)
+  state = {
+    count : 0
+  }
+  add = () => {
+    console.log('add');
+    
+  }
+  minus = () => {
+    console.log('minus');
+    
+  }
+  render(){
+    return (
+      <div>
+        <h1>I am a class {this.state.count} </h1>
+        {/*  onClick={this.add} -> 은 클릭버튼을 눌렀을때만 / onClick={this.add()} -> 즉시실행  */}
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>Minus</button>
+      </div>
+    );
+  }
+}
+```
+
+#### 3 - 1. All you need to know about State
+- **setState() 호출 -> react 는 state 를 refresh -> render function() 호출**
+- react 는 가상돔을 이용하여 변화가 있는 부분만 업데이트한다.
+
+```javascript
+// onClick={this.add} 함수 👇
+add = () => {
+    // this.setState({ count: this.state.count + 1 });
+    // this.state.count + 1 를 하게 된다면 state에 의존하게 되기 때문에 성능이슈가 발생할 수 있다.
+    this.setState(current => ({
+        count : current.count + 1
+    }));
+}
+```
+
+#### 3 - 2. Component Life Cycle
+- Life Cycle Method는 기본적으로 react 가 component를 생성하고 없애는 방법
+- Mounting : '태어나는 것'
+-- **constructor()** : js에서 class를 생성할때 호출되는 것 . constructor와 render에서 console.log 를 확인하면 constructor이 먼저실행되는것을 볼 수 있다. / 컴포넌트가 마운트 될때, 스크린에 표시될때, 컴포넌트가 웹사이트에 갈때 constructor 를 호출한다.
+-- static getDerivedStateFromProps()
+-- **render()** : 
+-- **componentDidMount()** : redner 이후, 이 컴포넌트가 처음 랜더되었다를 알려줌 
+- Updating : '일반적인 업데이트'
+-- static getDerivedStateFromProps() 
+-- shouldComponentUpdate() : 기본적으로 업데이트를 할지 말지 결정하는것에 대한 것
+> setState를 하면 static getDerivedStateFromProps() > shouldComponentUpdate()  > render()
+-- **render()** :
+-- getSnapshotBeforeUpdate()
+-- **componentDidUpdate()** : 
+--> setState를 호출하면 컴포넌트를 호출하고 render() 호출한뒤 업데이트가 완료되면 componentDidUpdate() 가 실행
+- Unmounting : 'component 가 죽는것' 
+-- **componentWillUnmount()** : 컴포넌트가 떠날때 호출된다.
+
+#### 3 - 3. Planning the Movie Component
+
+```javascript
+class App extends React.Component {
+  state = {
+    isLoading: true,
+    movies: [],
+  };
+
+  componentDidMount() {
+    setTimeout(() => {
+      // 딜레이 함수
+      this.setState({
+        isLoading: false,
+        // 만약 기존 state 에 정의되어있지 않은 요소를 추가하는것도 가능하다. (미리 선언해야 하는것은 필수가 아님 ! )
+      });
+    }, 6000);
+  }
+
+  render() {
+    const { isLoading } = this.state;
+    return <div>{isLoading ? "Loading" : "We are ready"}</div>;
+  }
+}
+
+export default App;
+```
 
